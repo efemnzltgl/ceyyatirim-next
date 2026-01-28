@@ -151,15 +151,19 @@ export default async function Footer({ lang }: { lang: string }) {
       {/* Bottom Copyright */}
       <div className="max-w-7xl mx-auto px-6 border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="text-[8px] tracking-[0.3em] uppercase font-light text-slate-600">
-          © {new Date().getFullYear()} CEY YATIRIM HOLDİNG.
+          © {new Date().getFullYear()} CEY YATIRIM HOLDİNG. ALL RIGHTS RESERVED.
         </div>
+
         <div className="flex items-center gap-6">
+          {/* Yeni Slogan ve Grup Vurgusu */}
           <span className="text-[8px] tracking-[0.4em] uppercase font-black text-gold italic">
-            Excellence in Investment
+            {currentLang === 'tr' ? 'GELECEĞİN YATIRIM VİZYONU' : 'INVESTMENT VISION OF THE FUTURE'}
           </span>
-          <div className="h-[1px] w-8 bg-gold/20"></div>
-          <span className="text-[7px] tracking-[0.4em] uppercase font-light text-slate-700">
-            PREMIUM DESIGN
+
+          <div className="h-[1px] w-8 bg-gold/30"></div>
+
+          <span className="text-[8px] tracking-[0.3em] uppercase font-bold text-slate-500">
+            {currentLang === 'tr' ? 'BİR CEYLAN GRUP A.Ş. KURULUŞUDUR' : 'A CEYLAN GROUP INC. COMPANY'}
           </span>
         </div>
       </div>
