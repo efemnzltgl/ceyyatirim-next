@@ -1,9 +1,5 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-// Yeni oluşturduğumuz bileşenleri import ediyoruz
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,10 +11,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Sitenin Google'da nasıl görüneceğini buradan ayarlıyoruz
-export const metadata: Metadata = {
-  title: "Cey Yatırım Holding | Geleceğe Değer Katan Yatırımlar",
-  description: "İnşaat, Tarım, Enerji ve Gayrimenkul alanlarında modern yatırım çözümleri.",
+export const metadata = {
+  title: "Cey Yatırım Holding",
+  description: "Building the Future with Confidence",
 };
 
 export default function RootLayout({
@@ -27,16 +22,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="tr"> {/* Dil seçeneğini TR yaptık */}
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans`}
-      >
-        <Navbar />
-        {/* children, page.tsx içindeki tüm içeriği buraya basar */}
-        <main className="min-h-screen pt-20"> 
-          {children}
-        </main>
-        <Footer />
+    <html lang="tr">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans`}>
+        {children}
       </body>
     </html>
   );
