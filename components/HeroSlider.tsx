@@ -69,14 +69,16 @@ export default function HeroSlider({ slides, lang = 'tr' }: { slides: any[], lan
                     </p>
 
                     {/* Buton */}
-                    <div className="animate-in fade-in slide-in-from-left-20 duration-1000 delay-500">
-                      <Link href={`/${lang}${link.startsWith('/') ? link : `/${link}`}`}>
-                        <button className="group relative px-12 py-5 bg-[#b39359] text-white text-[11px] font-black tracking-[0.4em] transition-all hover:bg-[#1a1c1e] overflow-hidden">
-                          <span className="relative z-10">{buttonText || (lang === 'tr' ? 'KEŞFET' : 'EXPLORE')}</span>
-                          <div className="absolute inset-0 bg-[#1a1c1e] translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
-                        </button>
-                      </Link>
-                    </div>
+                    {buttonText && (
+                      <div className="animate-in fade-in slide-in-from-left-20 duration-1000 delay-500">
+                        <Link href={`/${lang}${link.startsWith('/') ? link : `/${link}`}`}>
+                          <button className="group relative px-12 py-5 bg-[#b39359] text-white text-[11px] font-black tracking-[0.4em] transition-all hover:bg-[#1a1c1e] overflow-hidden">
+                            <span className="relative z-10">{buttonText}</span>
+                            <div className="absolute inset-0 bg-[#1a1c1e] translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+                          </button>
+                        </Link>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
