@@ -60,23 +60,33 @@ export default function SectorFocus({ lang, sectorList, header, title }: { lang:
                                 href={`/${lang}${sector.href}`}
                                 onMouseEnter={() => setActiveSector(i)}
                                 onMouseLeave={() => setActiveSector(null)}
-                                className={`relative h-[600px] p-12 flex flex-col justify-end transition-all duration-700 bg-white/50 backdrop-blur-sm border border-slate-100 overflow-hidden group ${activeSector === i ? 'bg-white/10 border-gold shadow-2xl -translate-y-4' : ''
+                                className={`relative h-[600px] flex flex-col justify-end transition-all duration-700 bg-dark overflow-hidden group border border-white/10 ${activeSector === i ? 'shadow-2xl -translate-y-4 border-gold' : ''
                                     }`}
                             >
-                                {/* Background Accent */}
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-gold/5 -translate-y-1/2 translate-x-1/2 rounded-full group-hover:bg-gold/10 transition-colors"></div>
+                                {/* Background Image */}
+                                <div className="absolute inset-0 z-0 select-none pointer-events-none">
+                                    <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-transparent z-10 opacity-90 group-hover:opacity-80 transition-opacity duration-700"></div>
+                                    <img
+                                        src={sector.image}
+                                        alt={sector.title}
+                                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                                    />
+                                </div>
 
-                                <div className="relative z-10">
+                                {/* Background Accent */}
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-gold/20 -translate-y-1/2 translate-x-1/2 rounded-full group-hover:bg-gold/40 transition-colors z-10 blur-xl"></div>
+
+                                <div className="relative z-20 p-12">
                                     <div className="w-12 h-12 mb-10 group-hover:scale-110 transition-transform duration-700">
                                         <IconComponent className="w-full h-full text-gold stroke-[1px]" />
                                     </div>
 
-                                    <h3 className="text-2xl font-light mb-6 text-dark uppercase tracking-tight group-hover:text-gold transition-colors italic">
+                                    <h3 className="text-2xl font-light mb-6 text-white uppercase tracking-tight group-hover:text-gold transition-colors italic">
                                         {sector.title}
                                     </h3>
 
                                     <div className={`overflow-hidden transition-all duration-700 max-h-0 ${activeSector === i ? 'max-h-40 mb-8' : ''}`}>
-                                        <p className="text-slate-500 font-light text-sm leading-relaxed">
+                                        <p className="text-slate-300 font-light text-sm leading-relaxed">
                                             {sector.desc}
                                         </p>
                                     </div>
