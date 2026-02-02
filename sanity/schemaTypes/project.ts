@@ -129,6 +129,18 @@ export default defineType({
       description: 'Örn: 50 Milyon USD',
     }),
     defineField({
+      name: 'year',
+      title: 'Yıl',
+      type: 'string',
+      description: 'Proje Yılı (Örn: 2023 veya 2022-2024)',
+    }),
+    defineField({
+      name: 'constructionArea',
+      title: 'İnşaat Alanı',
+      type: 'string',
+      description: 'Örn: 45.000 m²',
+    }),
+    defineField({
       name: 'relatedSector',
       title: 'İlgili Sektör',
       type: 'reference',
