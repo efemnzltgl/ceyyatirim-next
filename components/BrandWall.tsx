@@ -46,7 +46,7 @@ export default function BrandWall({ companies, title }: BrandWallProps) {
                 >
                     {companies.map((company) => (
                         <SwiperSlide key={company._id} className="flex items-center justify-center p-8 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-700">
-                            <div className="relative h-16 w-full max-w-[160px] flex items-center justify-center">
+                            <div className="relative h-28 w-full max-w-[240px] flex items-center justify-center">
                                 {company.logoUrl ? (
                                     <img
                                         src={company.logoUrl}
