@@ -20,6 +20,7 @@ interface Sector {
     href: string;
     image: string;
     iconName: keyof typeof iconMap;
+    iconUrl?: string; // New field for dynamic icon
 }
 
 export default function SectorFocus({ lang, sectorList, header, title }: { lang: string, sectorList: Sector[], header: string, title: string }) {
@@ -77,10 +78,6 @@ export default function SectorFocus({ lang, sectorList, header, title }: { lang:
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-gold/20 -translate-y-1/2 translate-x-1/2 rounded-full group-hover:bg-gold/40 transition-colors z-10 blur-xl"></div>
 
                                 <div className="relative z-20 p-12">
-                                    <div className="w-12 h-12 mb-10 group-hover:scale-110 transition-transform duration-700">
-                                        <IconComponent className="w-full h-full text-gold stroke-[1px]" />
-                                    </div>
-
                                     <h3 className="text-2xl font-light mb-6 text-white uppercase tracking-tight group-hover:text-gold transition-colors italic">
                                         {sector.title}
                                     </h3>

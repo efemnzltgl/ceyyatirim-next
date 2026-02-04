@@ -2,6 +2,9 @@ import { client } from '@/sanity/lib/client';
 import ProjectCard from '@/components/ProjectCard';
 import Image from 'next/image';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 const PROJECTS_QUERY = `*[_type == "project" && category == "completed"] | order(order asc) {
   _id,
   title_tr, title_en,

@@ -42,14 +42,24 @@ const COMPANIES_QUERY = `*[_type == "company"] | order(order asc) {
   "logoUrl": logo.asset->url
 }`;
 
+const SECTORS_QUERY = `*[_type == "sector"] | order(order asc) {
+  title_tr, title_en,
+  description_tr, description_en,
+  "slug": slug.current,
+  "iconUrl": icon.asset->url,
+  "imageUrl": featuredImage.asset->url,
+  "iconName": "Globe" // Fallback icon name
+}`;
+
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
 
-  const [slides, projects, settings, companies] = await Promise.all([
+  const [slides, projects, settings, companies, sectors] = await Promise.all([
     client.fetch(HERO_QUERY),
     client.fetch(PROJECTS_QUERY),
     client.fetch(SETTINGS_QUERY),
-    client.fetch(COMPANIES_QUERY)
+    client.fetch(COMPANIES_QUERY),
+    client.fetch(SECTORS_QUERY, {}, { cache: 'no-store' })
   ]);
 
   const t = {
@@ -98,7 +108,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
     explore: 'DETAYI İNCELE',
   };
 
-  const sectorListData: { iconName: "Building2" | "Leaf" | "Zap" | "Landmark" | "Globe" | "Flame" | "Network"; title: string; desc: string; href: string; image: string; }[] = [
+  const hardcodedSectors = [
     {
       iconName: 'Building2',
       title: lang === 'tr' ? "İnşaat ve Gayrimenkul" : "Construction & Real Estate",
@@ -128,6 +138,40 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
       image: 'https://images.unsplash.com/photo-1518770660439-4636190af475'
     }
   ];
+
+  // Map Sanity sectors to the format expected by SectorFocus
+  // If no sectors found in Sanity, fall back to hardcoded data
+
+  // Original images map by slug (or partial slug match) to preserve the design if images are missing in Sanity
+  // Turkish slugs are likely: 'insaat-ve-gayrimenkul', 'enerji', 'petrol-dogal-gaz', 'bilisim-telekomunikasyon'
+  const fallbackImages: Record<string, string> = {
+    'insaat': 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab',
+    'construction': 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab',
+    'enerji': 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e',
+    'energy': 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e',
+    'petrol': 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2',
+    'oil': 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2',
+    'bilisim': 'https://images.unsplash.com/photo-1518770660439-4636190af475',
+    'telecom': 'https://images.unsplash.com/photo-1518770660439-4636190af475',
+    'informatics': 'https://images.unsplash.com/photo-1518770660439-4636190af475'
+  };
+
+  const getFallbackImage = (slug: string) => {
+    if (!slug) return 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab';
+    const key = Object.keys(fallbackImages).find(k => slug.includes(k));
+    return key ? fallbackImages[key] : 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab';
+  };
+
+  const sectorListData = sectors && sectors.length > 0
+    ? sectors.map((s: any) => ({
+      iconName: 'Globe', // Default fallback for mapped items if needed, though we'll use iconUrl
+      iconUrl: s.iconUrl,
+      title: lang === 'tr' ? s.title_tr : (s.title_en || s.title_tr),
+      desc: lang === 'tr' ? s.description_tr : (s.description_en || s.description_tr),
+      href: `/sektorler/${s.slug}`,
+      image: s.imageUrl || getFallbackImage(s.slug)
+    }))
+    : hardcodedSectors;
 
   return (
     <div className="min-h-screen bg-white">
