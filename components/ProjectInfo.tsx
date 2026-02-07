@@ -1,4 +1,4 @@
-import { MapPin, Calendar, Building2, Wallet, Layers } from 'lucide-react';
+import { MapPin, Calendar, Building2, Wallet, Layers, Zap, Users } from 'lucide-react';
 import React from 'react';
 
 interface ProjectInfoProps {
@@ -11,8 +11,13 @@ export default function ProjectInfo({ project, lang }: ProjectInfoProps) {
 
     const infoItems = [
         {
-            icon: Building2,
+            icon: Users,
             label: isTr ? 'YATIRIMCI' : 'INVESTOR',
+            value: project.investor
+        },
+        {
+            icon: Building2,
+            label: isTr ? 'MÜŞTERİ' : 'CLIENT',
             value: project.client || (isTr ? 'Cey Yatırım A.Ş.' : 'Cey Investment Inc.')
         },
         {
@@ -24,6 +29,11 @@ export default function ProjectInfo({ project, lang }: ProjectInfoProps) {
             icon: Calendar,
             label: isTr ? 'YIL' : 'YEAR',
             value: project.year
+        },
+        {
+            icon: Zap,
+            label: isTr ? 'KURULU GÜÇ' : 'INSTALLED POWER',
+            value: project.installedPower
         },
         {
             icon: Layers,

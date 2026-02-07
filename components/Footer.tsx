@@ -21,6 +21,7 @@ export default async function Footer({ lang }: { lang: string }) {
     kurumsal: [
       { tr: 'Hakkımızda', en: 'About Us', href: '/kurumsal/hakkimizda' },
       { tr: 'Başkanın Mesajı', en: 'Message From President', href: '/kurumsal/baskanin-mesaji' },
+      { tr: 'İnsan Kaynakları', en: 'Human Resources', href: '/kurumsal/insan-kaynaklari' },
     ],
     sektorler: [
       { tr: 'İnşaat ve Gayrimenkul', en: 'Construction and Real Estate', href: '/sektorler/insaat-ve-gayrimenkul' },

@@ -147,28 +147,35 @@ const FALLBACK_PROJECTS = [
     }
 ];
 
+const SETTINGS_QUERY = `*[_type == "settings"][0] {
+    completedProjectsText
+}`;
+
 export default async function CompletedProjectsPage({ params }: { params: Promise<{ lang: string }> }) {
     const { lang } = await params;
-    const sanityProjects = await client.fetch(PROJECTS_QUERY);
+    const [sanityProjects, settings] = await Promise.all([
+        client.fetch(PROJECTS_QUERY),
+        client.fetch(SETTINGS_QUERY)
+    ]);
 
     // Use sanity data if exists, otherwise fallback
     const projects = sanityProjects.length > 0 ? sanityProjects : FALLBACK_PROJECTS;
 
     const t = {
         tr: {
-            title: 'Tamamlanan Projeler',
-            subtitle: 'BAŞARIYLA HAYATA GEÇİRİLEN DEĞERLER',
-            description: 'Cey Yatırım olarak, uzmanlık alanlarımızda dünya standartlarında projeleri başarıyla tamamlamanın gururunu taşıyoruz.'
+            title: settings?.completedProjectsText?.title_tr || 'Tamamlanan Projeler',
+            subtitle: settings?.completedProjectsText?.subtitle_tr || 'BAŞARIYLA HAYATA GEÇİRİLEN DEĞERLER',
+            description: settings?.completedProjectsText?.description_tr || 'Cey Yatırım olarak, uzmanlık alanlarımızda dünya standartlarında projeleri başarıyla tamamlamanın gururunu taşıyoruz.'
         },
         en: {
-            title: 'Completed Projects',
-            subtitle: 'SUCCESSFULLY REALIZED VALUES',
-            description: 'As Cey Investment, we take pride in successfully completing world-class projects in our areas of expertise.'
+            title: settings?.completedProjectsText?.title_en || 'Completed Projects',
+            subtitle: settings?.completedProjectsText?.subtitle_en || 'SUCCESSFULLY REALIZED VALUES',
+            description: settings?.completedProjectsText?.description_en || 'As Cey Investment, we take pride in successfully completing world-class projects in our areas of expertise.'
         }
     }[lang as 'tr' | 'en'] || {
-        title: 'Tamamlanan Projeler',
-        subtitle: 'BAŞARIYLA HAYATA GEÇİRİLEN DEĞERLER',
-        description: 'Cey Yatırım olarak, uzmanlık alanlarımızda dünya standartlarında projeleri başarıyla tamamlamanın gururunu taşıyoruz.'
+        title: settings?.completedProjectsText?.title_tr || 'Tamamlanan Projeler',
+        subtitle: settings?.completedProjectsText?.subtitle_tr || 'BAŞARIYLA HAYATA GEÇİRİLEN DEĞERLER',
+        description: settings?.completedProjectsText?.description_tr || 'Cey Yatırım olarak, uzmanlık alanlarımızda dünya standartlarında projeleri başarıyla tamamlamanın gururunu taşıyoruz.'
     };
 
     return (

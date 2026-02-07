@@ -141,6 +141,18 @@ export default defineType({
       description: 'Örn: 45.000 m²',
     }),
     defineField({
+      name: 'installedPower',
+      title: 'Kurulu Güç',
+      type: 'string',
+      description: 'Örn: 50 MW',
+    }),
+    defineField({
+      name: 'investor',
+      title: 'Yatırımcı',
+      type: 'string',
+      description: 'Proje Yatırımcısı',
+    }),
+    defineField({
       name: 'relatedSector',
       title: 'İlgili Sektör',
       type: 'reference',

@@ -7,6 +7,8 @@ import company from './company'
 import sector from './sector'
 import socialActivity from './socialActivity'
 import office from './office'
+import humanResources from './humanResources'
+import jobApplication from './jobApplication'
 
 export const schema = {
   types: [
@@ -18,5 +20,7 @@ export const schema = {
     sector,
     socialActivity,
     office,
+    humanResources,
+    jobApplication,
   ],
 }

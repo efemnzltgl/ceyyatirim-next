@@ -16,6 +16,8 @@ const PROJECT_DETAIL_QUERY = `*[_type == "project" && slug.current == $slug][0] 
   completionDate,
   year,
   constructionArea,
+  installedPower,
+  investor,
   client,
   projectValue,
   "mainImage": mainImage.asset->url,

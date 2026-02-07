@@ -39,6 +39,7 @@ export default function Navbar() {
     kurumsal: [
       { tr: 'Hakkımızda', en: 'About Us', href: '/kurumsal/hakkimizda' },
       { tr: 'Başkanın Mesajı', en: 'Message From President', href: '/kurumsal/baskanin-mesaji' },
+      { tr: 'İnsan Kaynakları', en: 'Human Resources', href: '/kurumsal/insan-kaynaklari' },
     ],
     projeler: [
       { tr: 'Tamamlanan Projeler', en: 'Completed Projects', href: '/projeler/tamamlanan-projeler' },

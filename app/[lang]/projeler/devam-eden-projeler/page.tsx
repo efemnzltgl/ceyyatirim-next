@@ -47,28 +47,35 @@ const FALLBACK_PROJECTS = [
     }
 ];
 
+const SETTINGS_QUERY = `*[_type == "settings"][0] {
+    ongoingProjectsText
+}`;
+
 export default async function OngoingProjectsPage({ params }: { params: Promise<{ lang: string }> }) {
     const { lang } = await params;
-    const sanityProjects = await client.fetch(PROJECTS_QUERY);
+    const [sanityProjects, settings] = await Promise.all([
+        client.fetch(PROJECTS_QUERY),
+        client.fetch(SETTINGS_QUERY)
+    ]);
 
     // Use sanity data if exists, otherwise fallback
     const projects = sanityProjects.length > 0 ? sanityProjects : FALLBACK_PROJECTS;
 
     const t = {
         tr: {
-            title: 'Devam Eden Projeler',
-            subtitle: 'GELECEĞI BUGÜNDEN İNŞA EDİYORUZ',
-            description: 'Portföyümüzdeki yeni nesil projelerle şehirlerin ve insanların hayatına değer katmaya devam ediyoruz.'
+            title: settings?.ongoingProjectsText?.title_tr || 'Devam Eden Projeler',
+            subtitle: settings?.ongoingProjectsText?.subtitle_tr || 'GELECEĞİ BUGÜNDEN İNŞA EDİYORUZ',
+            description: settings?.ongoingProjectsText?.description_tr || 'Portföyümüzdeki yeni nesil projelerle şehirlerin ve insanların hayatına değer katmaya devam ediyoruz.'
         },
         en: {
-            title: 'Ongoing Projects',
-            subtitle: 'BUILDING THE FUTURE TODAY',
-            description: 'We continue to add value to cities and people\'s lives with next-generation projects in our portfolio.'
+            title: settings?.ongoingProjectsText?.title_en || 'Ongoing Projects',
+            subtitle: settings?.ongoingProjectsText?.subtitle_en || 'BUILDING THE FUTURE TODAY',
+            description: settings?.ongoingProjectsText?.description_en || 'We continue to add value to cities and people\'s lives with next-generation projects in our portfolio.'
         }
     }[lang as 'tr' | 'en'] || {
-        title: 'Devam Eden Projeler',
-        subtitle: 'GELECEĞI BUGÜNDEN İNŞA EDİYORUZ',
-        description: 'Portföyümüzdeki yeni nesil projelerle şehirlerin ve insanların hayatına değer katmaya devam ediyoruz.'
+        title: settings?.ongoingProjectsText?.title_tr || 'Devam Eden Projeler',
+        subtitle: settings?.ongoingProjectsText?.subtitle_tr || 'GELECEĞİ BUGÜNDEN İNŞA EDİYORUZ',
+        description: settings?.ongoingProjectsText?.description_tr || 'Portföyümüzdeki yeni nesil projelerle şehirlerin ve insanların hayatına değer katmaya devam ediyoruz.'
     };
 
     return (
