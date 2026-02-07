@@ -2,7 +2,7 @@
 
 import { client } from '@/sanity/lib/client'
 
-export async function submitJobApplication(formData: FormData) {
+export async function submitJobApplication(prevState: any, formData: FormData) {
     try {
         const fullName = formData.get('fullName') as string
         const email = formData.get('email') as string
