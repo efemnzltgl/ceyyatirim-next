@@ -77,7 +77,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 w-full z-[9999] transition-all duration-500 pointer-events-none ${scrolled ? 'bg-[#0a0a0b]/95 backdrop-blur-xl shadow-2xl' : 'bg-transparent'}`}>
+      <header className={`fixed top-0 left-0 w-full z-[9999] transition-all duration-700 pointer-events-none ${scrolled ? 'bg-[#0a0a0b]/40 backdrop-blur-2xl border-b border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.5)] py-2' : 'bg-transparent border-b border-transparent py-4'}`}>
         <div className="pointer-events-auto">
           {/* Top Bar - Sadece scroll edilmediğinde */}
           {!scrolled && (

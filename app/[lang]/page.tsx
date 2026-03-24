@@ -1,6 +1,7 @@
 import { client } from '@/sanity/lib/client';
 import { ChevronRight, ArrowUpRight } from 'lucide-react';
-import HeroSlider from '@/components/HeroSlider';
+import HeroVideo from '@/components/HeroVideo';
+import ScrollReveal from '@/components/ScrollReveal';
 import Link from 'next/link';
 import StatsSection from '@/components/StatsSection';
 import SectorFocus from '@/components/SectorFocus';
@@ -19,7 +20,7 @@ const HERO_QUERY = `*[_type == "hero"] | order(order asc) {
   "imageUrl": image.asset->url
 }`;
 
-const PROJECTS_QUERY = `*[_type == "project"] | order(order asc) [0...3] {
+const PROJECTS_QUERY = `*[_type == "project"] | order(order asc, _createdAt asc) [0...5] {
   _id, 
   title_tr, title_en,
   description_tr, description_en,
@@ -176,10 +177,10 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
   return (
     <div className="min-h-screen bg-white">
       {/* 1. SECTION: Hero Slider */}
-      <HeroSlider slides={slides} lang={lang} />
+      <HeroVideo lang={lang} />
 
       {/* 2. SECTION: Corporate Intro */}
-      <section className="py-24 lg:py-40 px-6">
+      <ScrollReveal className="py-24 lg:py-40 px-6">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-24 items-center">
           <div className="lg:w-2/3">
             <span className="text-gold font-bold tracking-[0.4em] text-[10px] uppercase mb-8 block reveal-text">
@@ -204,36 +205,42 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             </div>
           </div>
         </div>
-      </section>
+      </ScrollReveal>
 
       {/* 3. SECTION: Stats Section (Interactive) */}
-      <StatsSection lang={lang} facts={JSON.parse(JSON.stringify(t.facts!))} />
+      <ScrollReveal>
+        <StatsSection lang={lang} facts={JSON.parse(JSON.stringify(t.facts!))} />
+      </ScrollReveal>
 
       {/* 4. SECTION: Sektörel Yatırımlar (Vitrine) - Forced serialization */}
-      <SectorFocus
-        lang={lang}
-        sectorList={JSON.parse(JSON.stringify(sectorListData))}
-        header={t.expertiseHeader}
-        title={t.expertiseTitle}
-      />
+      <ScrollReveal>
+        <SectorFocus
+          lang={lang}
+          sectorList={JSON.parse(JSON.stringify(sectorListData))}
+          header={t.expertiseHeader}
+          title={t.expertiseTitle}
+        />
+      </ScrollReveal>
 
       {/* 5. SECTION: Grup Şirketleri (Marquee) */}
-      <BrandWall
-        companies={companies.map((c: any) => ({
-          _id: c._id,
-          name: lang === 'tr' ? c.name_tr : (c.name_en || c.name_tr),
-          logoUrl: c.logoUrl
-        }))}
-        title={lang === 'tr' ? 'STRATEJİK İŞTİRAKLERİMİZ' : 'OUR STRATEGIC PARTNERS'}
-      />
+      <ScrollReveal>
+        <BrandWall
+          companies={companies.map((c: any) => ({
+            _id: c._id,
+            name: lang === 'tr' ? c.name_tr : (c.name_en || c.name_tr),
+            logoUrl: c.logoUrl
+          }))}
+          title={lang === 'tr' ? 'STRATEJİK İŞTİRAKLERİMİZ' : 'OUR STRATEGIC PARTNERS'}
+        />
+      </ScrollReveal>
 
       {/* 6. SECTION: Global Vision Banner */}
-      <section className="relative h-[600px] flex items-center justify-center overflow-hidden bg-dark">
+      <ScrollReveal className="relative h-[600px] flex items-center justify-center overflow-hidden bg-dark">
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
             alt="Global Networking"
-            className="w-full h-full object-cover opacity-20"
+            className="w-full h-full object-cover opacity-20 transition-transform duration-[10s] hover:scale-110"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-dark px-6"></div>
         </div>
@@ -254,26 +261,28 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-gold"></div> ANTALYA</div>
           </div>
         </div>
-      </section>
+      </ScrollReveal>
 
       {/* 7. SECTION: Öne Çıkan Projeler (Premium Showcase) */}
-      <ProjectShowcase
-        projects={projects.map((p: any) => ({
-          _id: p._id,
-          title: lang === 'tr' ? p.title_tr : (p.title_en || p.title_tr),
-          desc: lang === 'tr' ? p.description_tr : (p.description_en || p.description_tr),
-          slug: p.slug?.current || '#',
-          imageUrl: p.imageUrl
-        }))}
-        lang={lang}
-        header={t.portfolioHeader}
-        title={t.portfolioTitle}
-        viewAllText={t.viewAll}
-      />
+      <ScrollReveal>
+        <ProjectShowcase
+          projects={projects.map((p: any) => ({
+            _id: p._id,
+            title: lang === 'tr' ? p.title_tr : (p.title_en || p.title_tr),
+            desc: lang === 'tr' ? p.description_tr : (p.description_en || p.description_tr),
+            slug: p.slug?.current || '#',
+            imageUrl: p.imageUrl
+          }))}
+          lang={lang}
+          header={t.portfolioHeader}
+          title={t.portfolioTitle}
+          viewAllText={t.viewAll}
+        />
+      </ScrollReveal>
 
       {/* 8. SECTION: Final CTA */}
-      <section className="py-40 px-6 bg-dark text-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-full h-full opacity-5 pointer-events-none grayscale select-none overflow-hidden">
+      <ScrollReveal className="py-40 px-6 bg-dark text-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-full h-full opacity-5 pointer-events-none grayscale select-none overflow-hidden hover:scale-105 transition-transform duration-[10s]">
           <div className="text-[20vw] font-black tracking-tighter leading-none whitespace-nowrap -rotate-6 translate-y-1/2">CEY YATIRIM</div>
         </div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
@@ -286,7 +295,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             {lang === 'tr' ? 'BİZE ULAŞIN' : 'CONTACT US'}
           </Link>
         </div>
-      </section>
+      </ScrollReveal>
     </div>
   );
 }

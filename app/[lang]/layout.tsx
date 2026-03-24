@@ -1,5 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SmoothScroll from "@/components/SmoothScroll";
+import CustomCursor from "@/components/CustomCursor";
 
 export default async function LocaleLayout({
     children,
@@ -11,12 +13,13 @@ export default async function LocaleLayout({
     const { lang } = await params;
 
     return (
-        <>
+        <SmoothScroll>
+            <CustomCursor />
             <Navbar />
             <main className="min-h-screen">
                 {children}
             </main>
             <Footer lang={lang} />
-        </>
+        </SmoothScroll>
     );
 }
