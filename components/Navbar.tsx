@@ -76,7 +76,6 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { tr: 'ANA SAYFA', en: 'HOME', href: '/' },
     { tr: 'KURUMSAL', en: 'CORPORATE', type: 'dropdown', key: 'kurumsal' },
     { tr: 'PROJELER', en: 'PROJECTS', type: 'dropdown', key: 'projeler' },
     { tr: 'GRUP ŞİRKETLERİ', en: 'COMPANIES', type: 'dropdown', key: 'grupSirketleri' },
@@ -112,11 +111,11 @@ export default function Navbar() {
             </div>
           )}
 
-          <nav className="max-w-[1440px] mx-auto px-8 md:px-16 h-20 md:h-24 flex items-center justify-between">
+          <nav className="max-w-[1440px] mx-auto px-8 md:px-16 h-20 md:h-24 flex items-center justify-between gap-6 lg:gap-12">
             {/* Logo - Sola Yaslı */}
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 w-40 md:w-52 lg:w-60">
               <Link href={`/${currentLang}`} className="flex items-center group z-[1001]">
-                <img src="/logo.png" alt="Cey Yatırım Logo" className="h-11 md:h-14 w-auto object-contain transition-transform duration-500 group-hover:scale-105 drop-shadow-[0_0_10px_rgba(255,255,255,0.1)]" />
+                <img src="/logo.png" alt="Cey Yatırım Logo" className="h-auto w-full object-contain object-left transition-transform duration-500 group-hover:scale-105 drop-shadow-[0_0_10px_rgba(255,255,255,0.1)]" />
               </Link>
             </div>
 
