@@ -14,7 +14,7 @@
   --color-gold-dark: var(--cey-gold-dark);
   --color-gold-light: var(--cey-gold-light);
   --color-dark: var(--cey-dark);
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-montserrat), 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 body {

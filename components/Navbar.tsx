@@ -115,9 +115,8 @@ export default function Navbar() {
           <nav className="max-w-[1440px] mx-auto px-8 md:px-16 h-20 md:h-24 flex items-center justify-between">
             {/* Logo - Sola Yaslı */}
             <div className="flex-shrink-0">
-              <Link href={`/${currentLang}`} className="flex items-center gap-1 group z-[1001]">
-                <span className="text-white font-light tracking-[0.5em] text-2xl transition-all group-hover:tracking-[0.6em]">CEY</span>
-                <span className="text-gold font-bold text-2xl uppercase tracking-tighter">YATIRIM</span>
+              <Link href={`/${currentLang}`} className="flex items-center group z-[1001]">
+                <img src="/logo.png" alt="Cey Yatırım Logo" className="h-11 md:h-14 w-auto object-contain transition-transform duration-500 group-hover:scale-105 drop-shadow-[0_0_10px_rgba(255,255,255,0.1)]" />
               </Link>
             </div>
 

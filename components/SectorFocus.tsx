@@ -55,12 +55,12 @@ export default function SectorFocus({ lang, sectorList, header, title }: { lang:
                 <motion.div 
                     initial="hidden"
                     whileInView="show"
-                    viewport={{ once: true, margin: "-100px" }}
+                    viewport={{ once: false, amount: 0.2 }}
                     variants={{
                         hidden: { opacity: 0 },
                         show: {
                             opacity: 1,
-                            transition: { staggerChildren: 0.15 }
+                            transition: { staggerChildren: 0.3 }
                         }
                     }}
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
@@ -72,8 +72,8 @@ export default function SectorFocus({ lang, sectorList, header, title }: { lang:
                             <motion.div 
                                 key={i}
                                 variants={{
-                                    hidden: { opacity: 0, y: 40 },
-                                    show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+                                    hidden: { opacity: 0, y: 100 },
+                                    show: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
                                 }}
                             >
                                 <Link
