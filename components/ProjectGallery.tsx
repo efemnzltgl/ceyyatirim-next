@@ -15,9 +15,10 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
     const [lightboxOpen, setLightboxOpen] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    // Swipe state
-    const [touchStart, setTouchStart] = useState<number | null>(null);
-    const [touchEnd, setTouchEnd] = useState<number | null>(null);
+    // Unified Swipe/Drag state
+    const [dragStart, setDragStart] = useState<number | null>(null);
+    const [dragEnd, setDragEnd] = useState<number | null>(null);
+    const [isDragging, setIsDragging] = useState(false);
 
     const openLightbox = (index: number) => {
         setCurrentIndex(index);
@@ -54,22 +55,51 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [lightboxOpen, currentIndex, images.length]);
 
-    // Touch handlers for swipe
+    // Touch & Mouse swipe handlers
     const minSwipeDistance = 50;
+
+    const handleDragEnd = () => {
+        setIsDragging(false);
+        if (!dragStart || !dragEnd) return;
+        const distance = dragStart - dragEnd;
+        if (distance > minSwipeDistance) nextImage();
+        if (distance < -minSwipeDistance) prevImage();
+        
+        // Timeout to prevent click event if it was a drag
+        setTimeout(() => {
+            setDragStart(null);
+            setDragEnd(null);
+        }, 50);
+    };
+
+    // Touch
     const onTouchStart = (e: React.TouchEvent) => {
-        setTouchEnd(null);
-        setTouchStart(e.targetTouches[0].clientX);
+        setDragEnd(null);
+        setDragStart(e.targetTouches[0].clientX);
     };
     const onTouchMove = (e: React.TouchEvent) => {
-        setTouchEnd(e.targetTouches[0].clientX);
+        setDragEnd(e.targetTouches[0].clientX);
     };
-    const onTouchEnd = () => {
-        if (!touchStart || !touchEnd) return;
-        const distance = touchStart - touchEnd;
-        const isLeftSwipe = distance > minSwipeDistance;
-        const isRightSwipe = distance < -minSwipeDistance;
-        if (isLeftSwipe) nextImage();
-        if (isRightSwipe) prevImage();
+
+    // Mouse
+    const onMouseDown = (e: React.MouseEvent) => {
+        setIsDragging(true);
+        setDragEnd(null);
+        setDragStart(e.clientX);
+    };
+    const onMouseMove = (e: React.MouseEvent) => {
+        if (!isDragging) return;
+        setDragEnd(e.clientX);
+    };
+
+    // Clicking background shouldn't close if we were dragging
+    const handleBackgroundClick = (e: React.MouseEvent) => {
+        if (e.target === e.currentTarget) {
+            const distance = Math.abs((dragStart || 0) - (dragEnd || dragStart || 0));
+            if (distance < 10) {
+                closeLightbox();
+            }
+        }
     };
 
     if (!images || images.length === 0) return null;
@@ -121,11 +151,15 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
             {/* Lightbox Modal (React Portal kullanarak hiyerarşiden tamamen koparıldı, Navbar çakışmasını önler) */}
             {lightboxOpen && typeof document !== 'undefined' ? createPortal(
                 <div
-                    className="fixed inset-0 z-[999999] bg-[#0a0a0b]/95 flex items-center justify-center backdrop-blur-xl"
-                    onClick={closeLightbox}
+                    className="fixed inset-0 z-[999999] bg-[#0a0a0b]/95 flex items-center justify-center backdrop-blur-xl select-none"
+                    onClick={handleBackgroundClick}
                     onTouchStart={onTouchStart}
                     onTouchMove={onTouchMove}
-                    onTouchEnd={onTouchEnd}
+                    onTouchEnd={handleDragEnd}
+                    onMouseDown={onMouseDown}
+                    onMouseMove={onMouseMove}
+                    onMouseUp={handleDragEnd}
+                    onMouseLeave={handleDragEnd}
                 >
                     {/* Görünür Kapatma Butonu */}
                     <button
@@ -170,6 +204,7 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
                                     fill
                                     className="object-contain"
                                     quality={100}
+                                    draggable={false}
                                 />
                             </motion.div>
                         </AnimatePresence>

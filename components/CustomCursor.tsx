@@ -50,7 +50,7 @@ export default function CustomCursor() {
     <>
       <style dangerouslySetInnerHTML={{__html: `* { cursor: none !important; }`}} />
       <motion.div
-        className="fixed top-0 left-0 w-2 h-2 bg-white rounded-full pointer-events-none z-[100000] mix-blend-difference"
+        className="fixed top-0 left-0 w-2 h-2 bg-white rounded-full pointer-events-none z-[9999999] mix-blend-difference"
         animate={{
           x: mousePosition.x - 4,
           y: mousePosition.y - 4,
@@ -59,7 +59,7 @@ export default function CustomCursor() {
         transition={{ type: "tween", ease: "backOut", duration: 0.1 }}
       />
       <motion.div
-        className="fixed top-0 left-0 w-10 h-10 border border-white/50 rounded-full pointer-events-none z-[99999] mix-blend-difference flex items-center justify-center backdrop-blur-sm"
+        className="fixed top-0 left-0 w-10 h-10 border border-white/50 rounded-full pointer-events-none z-[9999998] mix-blend-difference flex items-center justify-center backdrop-blur-sm"
         animate={{
           x: mousePosition.x - 20,
           y: mousePosition.y - 20,
