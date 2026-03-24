@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { ChevronRight, Building2, Landmark, Leaf, Zap, Globe, Flame, Network } from 'lucide-react';
 import Link from 'next/link';
 
@@ -51,19 +52,37 @@ export default function SectorFocus({ lang, sectorList, header, title }: { lang:
                     </h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <motion.div 
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={{
+                        hidden: { opacity: 0 },
+                        show: {
+                            opacity: 1,
+                            transition: { staggerChildren: 0.15 }
+                        }
+                    }}
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
+                >
                     {sectorList.map((sector: Sector, i: number) => {
                         const IconComponent = iconMap[sector.iconName] || Globe;
 
                         return (
-                            <Link
+                            <motion.div 
                                 key={i}
-                                href={`/${lang}${sector.href}`}
-                                onMouseEnter={() => setActiveSector(i)}
-                                onMouseLeave={() => setActiveSector(null)}
-                                className={`relative h-[600px] flex flex-col justify-end transition-all duration-700 bg-dark overflow-hidden group border border-white/10 ${activeSector === i ? 'shadow-2xl -translate-y-4 border-gold' : ''
-                                    }`}
+                                variants={{
+                                    hidden: { opacity: 0, y: 40 },
+                                    show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+                                }}
                             >
+                                <Link
+                                    href={`/${lang}${sector.href}`}
+                                    onMouseEnter={() => setActiveSector(i)}
+                                    onMouseLeave={() => setActiveSector(null)}
+                                    className={`relative h-[600px] flex flex-col justify-end transition-all duration-700 bg-dark overflow-hidden group border border-white/10 w-full block ${activeSector === i ? 'shadow-2xl -translate-y-4 border-gold' : ''
+                                        }`}
+                                >
                                 {/* Background Image */}
                                 <div className="absolute inset-0 z-0 select-none pointer-events-none">
                                     <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-transparent z-10 opacity-90 group-hover:opacity-80 transition-opacity duration-700"></div>
@@ -93,10 +112,11 @@ export default function SectorFocus({ lang, sectorList, header, title }: { lang:
                                         <div className="w-8 h-[1px] bg-gold group-hover:w-16 transition-all duration-700"></div>
                                     </div>
                                 </div>
-                            </Link>
+                                </Link>
+                            </motion.div>
                         );
                     })}
-                </div>
+                </motion.div>
             </div>
         </section>
     );

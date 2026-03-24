@@ -15,7 +15,17 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    
+    // ESC key to close mobile menu
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsMobileMenuOpen(false);
+    };
+    window.addEventListener('keydown', handleEsc);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('keydown', handleEsc);
+    };
   }, []);
 
   const handleMouseEnter = (key: string) => {
@@ -187,6 +197,12 @@ export default function Navbar() {
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 bg-[#0a0a0b] z-[10000] lg:hidden flex flex-col pt-32 px-10 overflow-y-auto animate-in fade-in duration-300">
+          <button 
+            onClick={() => setIsMobileMenuOpen(false)} 
+            className="absolute top-6 right-6 p-2 text-white/50 hover:text-white transition-colors"
+          >
+            <X size={32} />
+          </button>
           <div className="flex flex-col gap-8 pb-20">
             {navLinks.map((link: any) => (
               <div key={link.tr} className="border-b border-white/5 pb-6">
