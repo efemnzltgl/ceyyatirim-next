@@ -20,11 +20,12 @@ const HERO_QUERY = `*[_type == "hero"] | order(order asc) {
   "imageUrl": image.asset->url
 }`;
 
-const PROJECTS_QUERY = `*[_type == "project"] | order(order asc, _createdAt asc) [0...5] {
+const PROJECTS_QUERY = `*[_type == "project"] | order(order asc, _createdAt asc) [0...6] {
   _id, 
   title_tr, title_en,
   description_tr, description_en,
   slug,
+  category,
   "imageUrl": mainImage.asset->url
 }`;
 
@@ -271,6 +272,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             title: lang === 'tr' ? p.title_tr : (p.title_en || p.title_tr),
             desc: lang === 'tr' ? p.description_tr : (p.description_en || p.description_tr),
             slug: p.slug?.current || '#',
+            category: p.category,
             imageUrl: p.imageUrl
           }))}
           lang={lang}

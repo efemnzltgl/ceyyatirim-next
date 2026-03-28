@@ -1,12 +1,8 @@
 'use client';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Navigation, Pagination, Parallax } from 'swiper/modules';
-import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState } from 'react';
+import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 
 interface Project {
     _id: string;
@@ -14,6 +10,7 @@ interface Project {
     desc: string;
     slug: string;
     imageUrl: string;
+    category?: string;
 }
 
 interface ProjectShowcaseProps {
@@ -25,208 +22,97 @@ interface ProjectShowcaseProps {
 }
 
 export default function ProjectShowcase({ projects, lang, header, title, viewAllText }: ProjectShowcaseProps) {
+    const [filter, setFilter] = useState('all');
+
     if (!projects || projects.length === 0) return null;
 
+    // Filter projects visually if category exists, else show all
+    const filteredProjects = projects.filter(project => {
+        if (filter === 'all') return true;
+        return project.category === filter;
+    });
+
+    // Ana sayfa için başlıklar (görsel isteğe göre)
+    const displayTitle = lang === 'tr' ? 'Hayata geçirdiğimiz seçkin projeler' : 'Distinguished projects we realized';
+    const displayHeader = lang === 'tr' ? 'PROJELER' : 'PROJECTS';
+
     return (
-        <section className="py-40 relative overflow-hidden bg-white">
-            {/* Ambient Background (Ken Burns) */}
-            <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden bg-white">
-                <div 
-                  className="w-full h-full bg-cover bg-center opacity-10"
-                  style={{ 
-                    backgroundImage: 'url("https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2000&auto=format&fit=crop")',
-                    animation: 'kenBurnsProject 30s infinite alternate ease-in-out'
-                  }}
-                />
-                 
-                <video autoPlay muted loop playsInline className="absolute top-0 left-0 w-full h-full object-cover opacity-10">
-                    <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" type="video/mp4" />
-                </video>
+        <section className="py-32 bg-white relative overflow-hidden">
+            <div className="max-w-7xl mx-auto px-6">
                 
-                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-white"></div>
-                
-                <style jsx>{`
-                  @keyframes kenBurnsProject {
-                    0% { transform: scale(1.0) translate(0, 0); }
-                    100% { transform: scale(1.15) translate(-1%, -1%); }
-                  }
-                `}</style>
-            </div>
-
-            <div className="max-w-7xl mx-auto px-6 mb-24 relative z-10">
-                <div className="flex flex-col md:flex-row justify-between items-end gap-8">
-                    <div className="max-w-2xl">
-                        <span className="text-gold font-bold tracking-[0.4em] text-[10px] uppercase mb-6 block">
-                            {header}
-                        </span>
-                        <h2 className="text-5xl md:text-7xl font-light text-black tracking-tighter leading-tight italic drop-shadow-sm">
-                            {title}
-                        </h2>
+                {/* Header & Title - Centered */}
+                <div className="flex flex-col items-center text-center mb-16">
+                    <span className="text-black/40 font-bold tracking-[0.3em] text-[10px] uppercase mb-4 block">
+                        {displayHeader}
+                    </span>
+                    <h2 className="text-3xl md:text-5xl font-semibold text-black tracking-tight leading-tight max-w-2xl mb-12">
+                        {displayTitle}
+                    </h2>
+                    
+                    {/* Filters (Pills) */}
+                    <div className="flex flex-wrap items-center justify-center gap-2 md:gap-4">
+                        <button 
+                            onClick={() => setFilter('all')}
+                            className={`px-5 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300 ${filter === 'all' ? 'bg-[#1a1c1e] text-white shadow-md' : 'bg-white border border-slate-200 text-slate-500 hover:border-slate-300 hover:text-black'}`}
+                        >
+                            {lang === 'tr' ? 'Tümü' : 'All'}
+                        </button>
+                        <button 
+                            onClick={() => setFilter('completed')}
+                            className={`px-5 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300 ${filter === 'completed' ? 'bg-[#1a1c1e] text-white shadow-md' : 'bg-white border border-slate-200 text-slate-500 hover:border-slate-300 hover:text-black'}`}
+                        >
+                            {lang === 'tr' ? 'Tamamlanan' : 'Completed'}
+                        </button>
+                        <button 
+                            onClick={() => setFilter('ongoing')}
+                            className={`px-5 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300 ${filter === 'ongoing' ? 'bg-[#1a1c1e] text-white shadow-md' : 'bg-white border border-slate-200 text-slate-500 hover:border-slate-300 hover:text-black'}`}
+                        >
+                            {lang === 'tr' ? 'Devam Eden' : 'Ongoing'}
+                        </button>
                     </div>
-                    <Link
-                        href={`/${lang}/projeler`}
-                        className="group flex items-center gap-4 text-[11px] font-bold tracking-[0.3em] text-black hover:text-gold transition-all pb-2 border-b border-transparent hover:border-gold"
-                    >
-                        {viewAllText}
-                        <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                    </Link>
                 </div>
-            </div>
 
-            <div className="relative group/slider z-10">
-                <Swiper
-                    modules={[Autoplay, Navigation, Pagination, Parallax]}
-                    parallax={true}
-                    speed={1200}
-                    spaceBetween={30}
-                    slidesPerView={1.2}
-                    centeredSlides={true}
-                    loop={false}
-                    autoplay={{
-                        delay: 4000,
-                        disableOnInteraction: false,
-                    }}
-                    pagination={{
-                        clickable: true,
-                        renderBullet: (index, className) => {
-                            return `<span class="${className} project-bullet"></span>`;
-                        }
-                    }}
-                    navigation={{
-                        prevEl: '.project-prev',
-                        nextEl: '.project-next',
-                    }}
-                    breakpoints={{
-                        1024: { slidesPerView: 1.5 },
-                    }}
-                    className="project-swiper !pb-24"
-                >
-                    {projects.map((project) => (
-                        <SwiperSlide key={project._id} className="overflow-hidden bg-dark project-slide rounded-xl">
-                            <Link href={`/${lang}/projeler/${project.slug}`}>
-                                <div className="relative h-[500px] md:h-[700px] overflow-hidden">
-                                    {/* Parallax Image Buffer */}
-                                    <div
-                                        className="absolute inset-0 w-full h-full"
-                                        data-swiper-parallax="20%"
-                                    >
-                                        <img
-                                            src={project.imageUrl}
-                                            alt={project.title}
-                                            className="w-full h-full object-cover project-img"
-                                        />
-                                        <div className="absolute inset-0 project-overlay"></div>
-                                    </div>
-
-                                    {/* Content Overlay */}
-                                    <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-16">
-                                        <div className="max-w-3xl project-text-reveal" data-swiper-parallax="-200">
-                                            <h3 className="text-3xl md:text-5xl font-light text-white mb-6 tracking-tight drop-shadow-lg">
-                                                {project.title}
-                                            </h3>
-                                            <p className="text-white/80 text-xs md:text-sm font-light leading-relaxed max-w-xl mb-8 uppercase tracking-[0.2em]">
-                                                {project.desc}
-                                            </p>
-                                            <div className="flex items-center gap-4 text-[10px] font-bold text-gold tracking-[0.4em]">
-                                                {lang === 'tr' ? 'PROJEYİ İNCELE' : 'VIEW PROJECT'}
-                                                <div className="w-12 h-[1px] bg-gold"></div>
-                                            </div>
-                                        </div>
-                                    </div>
+                {/* Grid layout */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                    {filteredProjects.map((project) => (
+                        <Link key={project._id} href={`/${lang}/projeler/${project.slug}`} className="group block">
+                            <div className="bg-white rounded-2xl overflow-hidden hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] transition-all duration-500 border border-transparent hover:border-black/5 pb-4 md:pb-6">
+                                {/* Image Area */}
+                                <div className="relative h-[250px] sm:h-[350px] w-full overflow-hidden rounded-2xl">
+                                    <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors z-10 duration-500"></div>
+                                    <img
+                                        src={project.imageUrl}
+                                        alt={project.title}
+                                        className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105"
+                                    />
                                 </div>
-                            </Link>
-                        </SwiperSlide>
+                                {/* Content Area */}
+                                <div className="pt-6 px-1 lg:px-2">
+                                    <h3 className="text-xl font-bold text-[#1a1c1e] mb-4 tracking-tight group-hover:opacity-80 transition-opacity">
+                                        {project.title}
+                                    </h3>
+                                    <span className="inline-block px-3 py-1 bg-slate-50 border border-slate-100 text-slate-500 text-[10px] rounded-md uppercase tracking-wider font-medium">
+                                        {project.category === 'ongoing' ? (lang === 'tr' ? 'Devam Eden' : 'Ongoing') : (lang === 'tr' ? 'Tamamlanan' : 'Completed')}
+                                    </span>
+                                </div>
+                            </div>
+                        </Link>
                     ))}
-                </Swiper>
+                </div>
 
-                {/* Custom Navigation */}
-                <div className="absolute top-1/2 -translate-y-1/2 left-4 md:left-12 z-20">
-                    <button className="project-prev w-16 h-16 rounded-full border border-black/10 bg-white/80 backdrop-blur-md flex items-center justify-center text-black hover:bg-gold hover:text-white hover:border-gold transition-all -translate-x-12 opacity-0 group-hover/slider:translate-x-0 group-hover/slider:opacity-100 duration-500">
-                        <ChevronLeft className="w-6 h-6" />
-                    </button>
-                </div>
-                <div className="absolute top-1/2 -translate-y-1/2 right-4 md:right-12 z-20">
-                    <button className="project-next w-16 h-16 rounded-full border border-black/10 bg-white/80 backdrop-blur-md flex items-center justify-center text-black hover:bg-gold hover:text-white hover:border-gold transition-all translate-x-12 opacity-0 group-hover/slider:translate-x-0 group-hover/slider:opacity-100 duration-500">
-                        <ChevronRight className="w-6 h-6" />
-                    </button>
-                </div>
+                {/* Buton - Tümünü Gör */}
+                {projects.length > 0 && (
+                    <div className="mt-20 text-center">
+                        <Link
+                            href={`/${lang}/projeler`}
+                            className="inline-flex items-center gap-4 text-[11px] font-bold tracking-[0.3em] text-black hover:text-gold transition-all pb-2 border-b border-black/30 hover:border-gold uppercase"
+                        >
+                            {viewAllText}
+                            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                        </Link>
+                    </div>
+                )}
             </div>
-
-            <style dangerouslySetInnerHTML={{ __html: `
-                .project-swiper .swiper-pagination {
-                  bottom: -10px !important;
-                }
-                
-                /* Bullet Customization */
-                .project-bullet {
-                  display: inline-block;
-                  background: #dfc18c !important;
-                  height: 2px !important;
-                  width: 24px !important;
-                  border-radius: 0 !important;
-                  opacity: 0.2 !important;
-                  margin: 0 8px !important;
-                  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
-                  cursor: pointer;
-                }
-                
-                .project-bullet:hover {
-                  opacity: 0.7 !important;
-                }
-                
-                .project-bullet.swiper-pagination-bullet-active {
-                  opacity: 1 !important;
-                  width: 64px !important;
-                  box-shadow: 0 0 15px rgba(223, 193, 140, 0.9) !important;
-                }
-                
-                /* Temel Slide Görünümü - Soluk/Uzak */
-                .project-swiper .swiper-slide {
-                  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s;
-                  opacity: 0.3;
-                  transform: scale(0.9);
-                }
-                
-                .project-swiper .project-img {
-                  filter: grayscale(100%) brightness(0.4);
-                  transform: scale(1);
-                  transition: all 1.8s cubic-bezier(0.16, 1, 0.3, 1);
-                }
-                
-                .project-swiper .project-overlay {
-                  background: rgba(10, 10, 11, 0.8);
-                  transition: all 1.5s;
-                }
-                
-                .project-swiper .project-text-reveal {
-                  opacity: 0;
-                  transform: translateY(40px);
-                  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
-                }
-                
-                /* Aktif Slide - Tam Aydınlık, Açılmış */
-                .project-swiper .swiper-slide-active {
-                  opacity: 1;
-                  transform: scale(1.05);
-                  z-index: 10;
-                  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
-                }
-                
-                .project-swiper .swiper-slide-active .project-img {
-                  filter: grayscale(0%) brightness(1);
-                  transform: scale(1.1);
-                }
-                
-                .project-swiper .swiper-slide-active .project-overlay {
-                  background: rgba(10, 10, 11, 0.1);
-                }
-                
-                .project-swiper .swiper-slide-active .project-text-reveal {
-                  opacity: 1;
-                  transform: translateY(0);
-                  transition-delay: 0.3s;
-                }
-            `}} />
         </section>
     );
 }
