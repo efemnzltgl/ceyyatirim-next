@@ -31,7 +31,7 @@ export default function ProjectCard({ project, lang }: ProjectCardProps) {
             href={`/${lang}/projeler/${project.slug?.current || '#'}`}
             className="group cursor-pointer block"
         >
-            <div className="relative h-[500px] overflow-hidden grayscale opacity-90 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-1000 shadow-[0_20px_40px_rgba(0,0,0,0.03)] group-hover:shadow-[0_40px_80px_rgba(0,0,0,0.08)]">
+            <div className="relative h-[500px] overflow-hidden grayscale opacity-90 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-1000 rounded-[24px] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.08)] group-hover:shadow-[0_45px_100px_-20px_rgba(0,0,0,0.12)] border border-black/[0.03] group-hover:-translate-y-2">
                 {project.imageUrl ? (
                     <Image
                         src={project.imageUrl}

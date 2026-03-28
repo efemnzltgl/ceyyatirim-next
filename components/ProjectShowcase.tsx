@@ -33,7 +33,7 @@ export default function ProjectShowcase({ projects, lang, header, title, viewAll
     });
 
     // Ana sayfa için başlıklar (görsel isteğe göre)
-    const displayTitle = lang === 'tr' ? 'Hayata geçirdiğimiz seçkin projeler' : 'Distinguished projects we realized';
+    const displayTitle = lang === 'tr' ? 'Hayata geçirdiğimiz projeler' : 'Distinguished projects we realized';
     const displayHeader = lang === 'tr' ? 'PROJELER' : 'PROJECTS';
 
     return (
@@ -76,9 +76,9 @@ export default function ProjectShowcase({ projects, lang, header, title, viewAll
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                     {filteredProjects.map((project) => (
                         <Link key={project._id} href={`/${lang}/projeler/${project.slug}`} className="group block">
-                            <div className="bg-white rounded-2xl overflow-hidden hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] transition-all duration-500 border border-transparent hover:border-black/5 pb-4 md:pb-6">
+                            <div className="bg-white rounded-[24px] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.08)] hover:shadow-[0_45px_100px_-20px_rgba(0,0,0,0.12)] transition-all duration-700 pb-4 md:pb-6 relative border border-black/[0.03] group-hover:-translate-y-2">
                                 {/* Image Area */}
-                                <div className="relative h-[250px] sm:h-[350px] w-full overflow-hidden rounded-2xl">
+                                <div className="relative h-[250px] sm:h-[350px] w-full overflow-hidden rounded-t-[24px]">
                                     <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors z-10 duration-500"></div>
                                     <img
                                         src={project.imageUrl}
