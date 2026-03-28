@@ -73,7 +73,7 @@ export default function HeroVideo({ lang = 'tr' }: { lang?: string }) {
         </div>
         
         <motion.p 
-          className="text-lg md:text-2xl text-black/70 max-w-2xl font-light mb-16"
+          className="text-lg md:text-2xl text-black/60 max-w-2xl font-light mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.6 }}

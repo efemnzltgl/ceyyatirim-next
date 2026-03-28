@@ -28,7 +28,7 @@ export default function SectorFocus({ lang, sectorList, header, title }: { lang:
     const [activeSector, setActiveSector] = useState<number | null>(null);
 
     return (
-        <section className="py-40 px-6 bg-white relative overflow-hidden">
+        <section className="py-48 px-6 bg-[#fcfcfc] relative overflow-hidden">
             {/* Dynamic Background Image Reveal */}
             <div className="absolute inset-0 z-0 transition-all duration-1000 overflow-hidden">
                 {sectorList.map((sector, i) => (
@@ -47,7 +47,7 @@ export default function SectorFocus({ lang, sectorList, header, title }: { lang:
                     <span className="text-gold font-bold tracking-[0.4em] text-[10px] uppercase mb-6 block">
                         {header}
                     </span>
-                    <h2 className="text-5xl md:text-8xl font-light text-dark tracking-tighter italic">
+                    <h2 className="text-5xl md:text-8xl font-thin text-dark tracking-tighter leading-[1.1] italic">
                         {title}
                     </h2>
                 </div>
@@ -80,16 +80,16 @@ export default function SectorFocus({ lang, sectorList, header, title }: { lang:
                                     href={`/${lang}${sector.href}`}
                                     onMouseEnter={() => setActiveSector(i)}
                                     onMouseLeave={() => setActiveSector(null)}
-                                    className={`relative h-[600px] flex flex-col justify-end transition-all duration-700 bg-white overflow-hidden group border border-black/5 w-full block ${activeSector === i ? 'shadow-[0_30px_60px_rgba(0,0,0,0.1)] -translate-y-4 border-gold' : ''
+                                    className={`relative h-[600px] flex flex-col justify-end transition-all duration-1000 bg-[#fcfcfc] overflow-hidden group border border-black/5 w-full block ${activeSector === i ? 'shadow-[0_40px_80px_rgba(0,0,0,0.06)] -translate-y-4 border-gold/50' : ''
                                         }`}
                                 >
                                 {/* Background Image */}
                                 <div className="absolute inset-0 z-0 select-none pointer-events-none">
-                                    <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent z-10 opacity-90 group-hover:opacity-80 transition-opacity duration-700"></div>
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#fcfcfc] via-[#fcfcfc]/80 to-transparent z-10 opacity-90 group-hover:opacity-75 transition-opacity duration-[1.5s]"></div>
                                     <img
                                         src={sector.image}
                                         alt={sector.title}
-                                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                                        className="w-full h-full object-cover transition-transform duration-[4s] ease-out group-hover:scale-110"
                                     />
                                 </div>
 
@@ -97,12 +97,12 @@ export default function SectorFocus({ lang, sectorList, header, title }: { lang:
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-gold/20 -translate-y-1/2 translate-x-1/2 rounded-full group-hover:bg-gold/40 transition-colors z-10 blur-xl"></div>
 
                                 <div className="relative z-20 p-12">
-                                    <h3 className="text-2xl font-light mb-6 text-black uppercase tracking-tight group-hover:text-gold transition-colors italic">
+                                    <h3 className="text-3xl font-thin mb-4 text-black uppercase tracking-tight group-hover:text-gold transition-colors duration-700 italic">
                                         {sector.title}
                                     </h3>
 
                                     <div className={`overflow-hidden transition-all duration-700 max-h-0 ${activeSector === i ? 'max-h-40 mb-8' : ''}`}>
-                                        <p className="text-slate-600 font-light text-sm leading-relaxed">
+                                        <p className="text-black/60 font-light text-sm leading-relaxed">
                                             {sector.desc}
                                         </p>
                                     </div>

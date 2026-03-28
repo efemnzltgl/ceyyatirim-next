@@ -45,7 +45,7 @@ export default function HeroSlider({ slides, lang = 'tr' }: { slides: any[], lan
                   <img
                     src={slide.imageUrl}
                     alt={title}
-                    className="w-full h-full object-cover transition-transform duration-[10s] scale-110"
+                    className="w-full h-full object-cover transition-transform duration-[20s] scale-110"
                   />
                   <div className="absolute inset-0 bg-white/30"></div>
                   <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/10 to-transparent"></div>
@@ -54,17 +54,17 @@ export default function HeroSlider({ slides, lang = 'tr' }: { slides: any[], lan
                 <div className="relative max-w-7xl mx-auto px-6 h-full flex items-center">
                   <div className="max-w-3xl">
                     {/* Üst Küçük Başlık */}
-                    <span className="text-[#b39359] font-black tracking-[0.4em] text-[10px] uppercase mb-6 block border-l-2 border-[#b39359] pl-6 animate-in fade-in slide-in-from-left-8 duration-1000">
+                    <span className="text-[#b39359] font-bold tracking-[0.5em] text-[10px] uppercase mb-6 block border-l-2 border-[#b39359] pl-6 animate-in fade-in slide-in-from-left-8 duration-1000">
                       {lang === 'tr' ? 'HOŞ GELDİNİZ' : 'WELCOME'}
                     </span>
 
                     {/* Ana Başlık */}
-                    <h1 className="text-4xl md:text-8xl font-light text-black leading-[1.1] tracking-tight italic mb-8 animate-in fade-in slide-in-from-left-12 duration-1000 delay-200">
+                    <h1 className="text-4xl md:text-8xl font-thin text-black leading-[1.1] tracking-tighter italic mb-8 animate-in fade-in slide-in-from-left-12 duration-1000 delay-200">
                       {title}
                     </h1>
 
                     {/* Alt Başlık */}
-                    <p className="text-lg md:text-xl text-black/70 font-light max-w-xl leading-relaxed mb-12 animate-in fade-in slide-in-from-left-16 duration-1000 delay-400">
+                    <p className="text-lg md:text-xl text-black/60 font-light max-w-xl leading-relaxed mb-12 animate-in fade-in slide-in-from-left-16 duration-1000 delay-400">
                       {subtitle}
                     </p>
 

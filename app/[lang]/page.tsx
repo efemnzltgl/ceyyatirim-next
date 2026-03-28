@@ -180,17 +180,17 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
       <HeroVideo lang={lang} />
 
       {/* 2. SECTION: Corporate Intro */}
-      <ScrollReveal className="py-24 lg:py-40 px-6">
+      <ScrollReveal className="py-32 lg:py-48 px-6">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-24 items-center">
           <div className="lg:w-2/3">
             <span className="text-gold font-bold tracking-[0.4em] text-[10px] uppercase mb-8 block reveal-text">
               {t.aboutHeader}
             </span>
-            <h2 className="text-5xl md:text-8xl font-light text-dark tracking-tighter leading-[1.1] mb-12 italic">
+            <h2 className="text-5xl md:text-8xl font-thin text-dark tracking-tighter leading-[1.1] mb-12 italic">
               {t.aboutTitle}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-              <p className="text-slate-500 text-lg font-light leading-relaxed">
+              <p className="text-black/60 text-lg font-light leading-relaxed">
                 {t.aboutDesc}
               </p>
               <div className="flex flex-col gap-8">
@@ -240,7 +240,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
           <img
             src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
             alt="Global Networking"
-            className="w-full h-full object-cover opacity-10 transition-transform duration-[10s] hover:scale-110"
+            className="w-full h-full object-cover opacity-10 grayscale transition-transform duration-[20s] hover:scale-110 hover:grayscale-0 hover:opacity-20"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#f8f8f8] via-[#f8f8f8]/50 to-[#f8f8f8] px-6"></div>
         </div>
@@ -249,12 +249,12 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
           <span className="text-gold font-bold tracking-[0.5em] text-[12px] uppercase mb-12 block">
             {lang === 'tr' ? 'KÜRESEL ETKİ' : 'GLOBAL IMPACT'}
           </span>
-          <h2 className="text-4xl md:text-6xl font-light text-black leading-tight tracking-tight italic mb-12">
+          <h2 className="text-4xl md:text-6xl font-thin text-black leading-tight tracking-tighter italic mb-16">
             {lang === 'tr'
               ? "“Kıtalar arası kurduğumuz güçlü köprülerle, Türk sermayesini dünya pazarlarında gururla temsil ediyoruz.”"
               : "“We proudly represent Turkish capital in world markets through the strong bridges we build across continents.”"}
           </h2>
-          <div className="flex items-center justify-center gap-12 text-black/50 text-[10px] font-bold tracking-[0.2em] uppercase">
+          <div className="flex items-center justify-center gap-12 text-black/40 text-[10px] font-bold tracking-[0.3em] uppercase">
             <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-gold"></div> MIAMI</div>
             <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-gold"></div> ANKARA</div>
             <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-gold"></div> ISTANBUL</div>
@@ -281,12 +281,12 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
       </ScrollReveal>
 
       {/* 8. SECTION: Final CTA */}
-      <ScrollReveal className="py-40 px-6 bg-white text-black relative overflow-hidden">
+      <ScrollReveal className="py-48 px-6 bg-white text-black relative overflow-hidden">
         <div className="absolute top-0 right-0 w-full h-full opacity-5 pointer-events-none grayscale select-none overflow-hidden hover:scale-105 transition-transform duration-[10s]">
           <div className="text-[20vw] font-black tracking-tighter leading-none whitespace-nowrap -rotate-6 translate-y-1/2">CEY YATIRIM</div>
         </div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <p className="text-2xl md:text-4xl font-light leading-relaxed tracking-tight italic mb-16 opacity-90">
+          <p className="text-2xl md:text-4xl font-thin leading-relaxed tracking-tighter italic mb-16 text-black/80">
             {lang === 'tr'
               ? "“Sürdürülebilirlik ve inovasyon temelinde, küresel ölçekte değer yaratan stratejik yatırım ortağınız.”"
               : "“Your global strategic investment partner creating value based on sustainability and innovation.”"}
