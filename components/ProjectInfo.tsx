@@ -60,7 +60,7 @@ export default function ProjectInfo({ project, lang }: ProjectInfoProps) {
             <div className="absolute top-0 right-0 w-64 h-64 bg-gold/10 -translate-y-1/2 translate-x-1/2 rounded-full blur-3xl group-hover:bg-gold/20 transition-colors duration-700 pointer-events-none"></div>
             
             <div className="relative z-10">
-                <h1 className="text-3xl lg:text-4xl font-light text-black mb-2 leading-tight uppercase tracking-tight italic">
+                <h1 className="text-3xl lg:text-4xl font-semibold text-black mb-2 leading-tight uppercase tracking-tight">
                     {isTr ? project.title_tr : (project.title_en || project.title_tr)}
                 </h1>
                 <div className="h-[1px] w-20 bg-gold my-8 opacity-50"></div>
@@ -81,15 +81,6 @@ export default function ProjectInfo({ project, lang }: ProjectInfoProps) {
                             </div>
                         </div>
                     ))}
-                </div>
-
-                <div className="pt-8 border-t border-black/10">
-                    <h3 className="text-[10px] tracking-[0.3em] font-bold text-gold mb-6 uppercase">
-                        {isTr ? 'Proje Hakkında' : 'About Project'}
-                    </h3>
-                    <p className="text-black/60 font-light leading-loose text-sm italic">
-                        {isTr ? project.description_tr : (project.description_en || project.description_tr)}
-                    </p>
                 </div>
             </div>
         </div>

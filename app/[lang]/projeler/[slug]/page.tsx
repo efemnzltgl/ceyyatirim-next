@@ -72,7 +72,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                             <span className="text-gold font-bold tracking-[0.3em] text-[10px] uppercase">
                                 {categoryTitle}
                             </span>
-                            <h1 className="text-5xl md:text-7xl font-light text-black tracking-tighter italic">
+                            <h1 className="text-4xl md:text-6xl font-semibold text-black tracking-tight">
                                 {title}
                             </h1>
                         </div>
@@ -101,14 +101,23 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                                 <ProjectGallery images={images} title={title} />
                             </ScrollReveal>
 
-                            {/* Detailed Content */}
-                            {content && (
-                                <ScrollReveal>
-                                    <div className="prose prose-lg max-w-none prose-headings:font-light prose-headings:text-black prose-p:text-slate-600 prose-p:leading-relaxed prose-a:text-gold prose-img:rounded-md">
-                                        <RichTextRenderer content={content} />
-                                    </div>
-                                </ScrollReveal>
-                            )}
+                            {/* Extended Project Details */}
+                            <ScrollReveal>
+                                <div className="bg-white p-10 md:p-16 rounded-[24px] border border-black/5 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.05)]">
+                                    <h3 className="text-[10px] tracking-[0.3em] font-bold text-gold mb-8 uppercase">
+                                        {lang === 'tr' ? 'PROJE HAKKINDA' : 'ABOUT THE PROJECT'}
+                                    </h3>
+                                    <p className="text-black/70 font-medium leading-relaxed md:text-lg mb-10">
+                                        {lang === 'tr' ? project.description_tr : (project.description_en || project.description_tr)}
+                                    </p>
+                                    
+                                    {content && (
+                                        <div className="prose prose-lg max-w-none prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-black prose-p:text-black/60 prose-p:font-medium prose-p:leading-relaxed prose-a:text-gold prose-img:rounded-[24px] pt-10 border-t border-black/5">
+                                            <RichTextRenderer content={content} />
+                                        </div>
+                                    )}
+                                </div>
+                            </ScrollReveal>
                         </div>
 
                         {/* Right Column: Info Sidebar (span-4) */}
