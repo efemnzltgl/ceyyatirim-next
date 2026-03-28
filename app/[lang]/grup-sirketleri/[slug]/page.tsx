@@ -118,26 +118,14 @@ export default async function CompanyDetailPage({ params }: { params: Promise<{ 
     return (
         <main className="bg-white min-h-screen">
             {/* Hero Header Area */}
-            <div className="relative h-[60vh] min-h-[450px] w-full bg-[#0a0a0b] overflow-hidden">
-                {company.imageUrl && (
-                    <Image
-                        src={company.imageUrl}
-                        alt={name}
-                        fill
-                        className="object-cover opacity-50 grayscale"
-                        priority
-                    />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/40 to-transparent"></div>
-                <div className="absolute bottom-0 left-0 w-full p-12 md:p-24">
-                    <div className="max-w-7xl mx-auto">
-                        <span className="text-gold font-bold tracking-[0.4em] text-[10px] uppercase mb-6 block">
-                            {lang === 'tr' ? 'GRUP ŞİRKETİ' : 'GROUP COMPANY'}
-                        </span>
-                        <h1 className="text-5xl md:text-8xl font-light text-white tracking-tighter leading-none italic">
-                            {name}
-                        </h1>
-                    </div>
+            <div className="pt-40 pb-16 w-full bg-[#f8f9fa] text-center border-b border-black/[0.03]">
+                <div className="max-w-3xl mx-auto px-6">
+                    <span className="text-black/40 font-bold tracking-[0.3em] text-[10px] uppercase mb-6 block">
+                        {lang === 'tr' ? 'GRUP ŞİRKETİ' : 'GROUP COMPANY'}
+                    </span>
+                    <h1 className="text-4xl md:text-5xl font-semibold text-black tracking-tight leading-tight">
+                        {name}
+                    </h1>
                 </div>
             </div>
 
@@ -167,7 +155,7 @@ export default async function CompanyDetailPage({ params }: { params: Promise<{ 
                                         href={company.website}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="group inline-flex items-center gap-4 text-sm font-light text-dark hover:text-gold transition-all"
+                                        className="group inline-flex items-center gap-4 text-sm font-medium text-dark hover:text-gold transition-all"
                                     >
                                         <span className="h-[1px] w-8 bg-slate-200 group-hover:bg-gold transition-all"></span>
                                         {lang === 'tr' ? 'Web Sitesini Ziyaret Et' : 'Visit Website'}

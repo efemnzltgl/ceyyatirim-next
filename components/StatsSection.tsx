@@ -31,7 +31,7 @@ export default function StatsSection({ lang, facts }: StatsSectionProps) {
 
                         return (
                             <div key={i} className="flex flex-col items-center lg:items-start group">
-                                <div className="text-5xl md:text-8xl font-thin text-black tracking-tighter mb-4 group-hover:text-gold transition-colors duration-700">
+                                <div className="text-5xl md:text-7xl font-bold text-[#1a1c1e] tracking-tight mb-4 group-hover:text-[#b39359] transition-colors duration-500">
                                     <Counter end={numPart} suffix={suffixPart} />
                                 </div>
                                 <div className="h-[1px] w-12 bg-gold/50 mb-6 group-hover:w-24 transition-all duration-700"></div>

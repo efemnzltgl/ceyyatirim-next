@@ -21,7 +21,7 @@ export default function BrandWall({ companies, title }: BrandWallProps) {
     return (
         <section className="py-32 bg-slate-50/50 border-y border-slate-100 overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 mb-16 text-center">
-                <span className="text-gold font-bold tracking-[0.4em] text-[10px] uppercase mb-4 block">
+                <span className="text-black/40 font-bold tracking-[0.3em] text-[10px] uppercase mb-4 block">
                     {title}
                 </span>
             </div>

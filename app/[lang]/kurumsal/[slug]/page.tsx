@@ -81,26 +81,14 @@ export default async function CorporatePage({ params }: { params: Promise<{ lang
   return (
     <main className="bg-white min-h-screen">
       {/* Hero Header Area */}
-      <div className="relative h-[60vh] min-h-[400px] w-full bg-[#f8f8f8] overflow-hidden border-b border-black/5">
-        {displayImage && (
-          <Image
-            src={displayImage}
-            alt={title}
-            fill
-            className="object-cover opacity-10 grayscale"
-            priority
-          />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#f8f8f8] via-[#f8f8f8]/80 to-transparent"></div>
-        <div className="absolute bottom-0 left-0 w-full p-12 md:p-24">
-          <div className="max-w-7xl mx-auto">
-            <span className="text-gold font-bold tracking-[0.4em] text-[10px] uppercase mb-6 block reveal-text">
-              {lang === 'tr' ? 'KURUMSAL' : 'CORPORATE'}
-            </span>
-            <h1 className="text-5xl md:text-8xl font-light text-black tracking-tighter leading-none reveal-text italic">
-              {title}
-            </h1>
-          </div>
+      <div className="pt-40 pb-16 w-full bg-[#f8f9fa] text-center border-b border-black/[0.03]">
+        <div className="max-w-3xl mx-auto px-6">
+          <span className="text-black/40 font-bold tracking-[0.3em] text-[10px] uppercase mb-6 block reveal-text">
+            {lang === 'tr' ? 'KURUMSAL' : 'CORPORATE'}
+          </span>
+          <h1 className="text-4xl md:text-5xl font-semibold text-black tracking-tight leading-tight reveal-text">
+            {title}
+          </h1>
         </div>
       </div>
 

@@ -33,20 +33,12 @@ export default async function HumanResourcesPage({ params }: { params: Promise<{
     return (
         <main className="bg-white min-h-screen">
             {/* Hero Section */}
-            <div className="relative h-[40vh] min-h-[350px] w-full bg-[#0a0a0b] overflow-hidden flex items-center pt-20">
-                <Image
-                    src={data?.image ? (data.image.asset?._ref ? data.image.asset._ref : "http://www.ceyyatirim.com/sites/other/ceyyatirim/uploads/slides/projeler-banner.jpg") : "http://www.ceyyatirim.com/sites/other/ceyyatirim/uploads/slides/projeler-banner.jpg"}
-                    alt={t.title}
-                    fill
-                    className="object-cover opacity-50 grayscale"
-                    priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-transparent"></div>
-                <div className="max-w-7xl mx-auto px-6 w-full text-center relative z-10">
-                    <span className="text-[#b39359] font-bold tracking-[0.4em] text-[10px] uppercase mb-4 block">
+            <div className="pt-40 pb-16 w-full bg-[#f8f9fa] text-center border-b border-black/[0.03]">
+                <div className="max-w-3xl mx-auto px-6">
+                    <span className="text-black/40 font-bold tracking-[0.3em] text-[10px] uppercase mb-6 block">
                         {t.subtitle}
                     </span>
-                    <h1 className="text-4xl md:text-6xl font-light text-white tracking-tighter leading-none italic">
+                    <h1 className="text-4xl md:text-5xl font-semibold text-black tracking-tight leading-tight">
                         {t.title}
                     </h1>
                 </div>

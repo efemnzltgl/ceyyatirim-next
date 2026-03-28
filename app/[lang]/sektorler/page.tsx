@@ -71,30 +71,22 @@ export default async function SectorsPage({ params }: { params: Promise<{ lang: 
     return (
         <main className="bg-white min-h-screen">
             {/* Hero Section */}
-            <div className="relative h-[40vh] min-h-[350px] w-full bg-[#f8f8f8] overflow-hidden flex items-center pt-20">
-                <Image
-                    src="http://www.ceyyatirim.com/sites/other/ceyyatirim/uploads/slides/projeler-banner.jpg"
-                    alt={t.title}
-                    fill
-                    className="object-cover opacity-10 grayscale"
-                    priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#f8f8f8] via-transparent to-transparent"></div>
-                <div className="max-w-7xl mx-auto px-6 w-full text-center relative z-10">
-                    <span className="text-gold font-bold tracking-[0.4em] text-[10px] uppercase mb-4 block">
+            <div className="pt-40 pb-16 w-full bg-[#f8f9fa] text-center border-b border-black/[0.03]">
+                <div className="max-w-3xl mx-auto px-6">
+                    <span className="text-black/40 font-bold tracking-[0.3em] text-[10px] uppercase mb-6 block">
                         {t.subtitle}
                     </span>
-                    <h1 className="text-5xl md:text-7xl font-light text-black tracking-tighter leading-none italic">
+                    <h1 className="text-4xl md:text-5xl font-semibold text-black tracking-tight leading-tight mb-6">
                         {t.title}
                     </h1>
+                     <p className="text-black/50 text-lg font-medium leading-relaxed max-w-2xl mx-auto">
+                        {t.description}
+                    </p>
                 </div>
             </div>
 
-            <div className="py-24 px-6 bg-[#fcfcfc]">
+            <div className="py-24 px-6 bg-white">
                 <div className="max-w-7xl mx-auto">
-                    <p className="text-slate-500 text-lg font-light leading-relaxed mb-20 max-w-3xl border-l-[3px] border-gold pl-8 italic">
-                        {t.description}
-                    </p>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {sectors.map((sector: any) => {
@@ -105,7 +97,7 @@ export default async function SectorsPage({ params }: { params: Promise<{ lang: 
                                 <Link
                                     key={sector._id}
                                     href={`/${lang}/sektorler/${sector.slug?.current || '#'}`}
-                                    className="group relative h-[450px] overflow-hidden bg-[#fcfcfc] border border-black/5 rounded-sm"
+                                    className="group relative h-[450px] overflow-hidden bg-white border border-black/5 rounded-[24px] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-700 block"
                                 >
                                     <Image
                                         src={sector.iconUrl}
@@ -114,8 +106,8 @@ export default async function SectorsPage({ params }: { params: Promise<{ lang: 
                                         className="object-cover opacity-60 group-hover:scale-110 transition-transform duration-1000 grayscale group-hover:grayscale-0"
                                     />
                                     <div className="absolute inset-x-0 bottom-0 p-12 bg-gradient-to-t from-white via-white/80 to-transparent">
-                                        <h3 className="text-3xl font-light text-black mb-4 italic uppercase tracking-wider">{title}</h3>
-                                        <p className="text-black/70 text-sm font-light mb-8 max-w-sm tracking-wide leading-relaxed line-clamp-2">
+                                        <h3 className="text-2xl font-bold text-[#1a1c1e] mb-4 uppercase tracking-tight">{title}</h3>
+                                        <p className="text-black/60 text-sm font-medium mb-8 max-w-sm leading-relaxed line-clamp-2">
                                             {desc}
                                         </p>
                                         <div className="flex items-center gap-3">

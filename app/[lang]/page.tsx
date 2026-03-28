@@ -182,25 +182,25 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
 
       {/* 2. SECTION: Corporate Intro */}
       <ScrollReveal className="py-32 lg:py-48 px-6">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-24 items-center">
-          <div className="lg:w-2/3">
-            <span className="text-gold font-bold tracking-[0.4em] text-[10px] uppercase mb-8 block reveal-text">
+        <div className="max-w-5xl mx-auto flex flex-col items-center text-center">
+          <div className="w-full">
+            <span className="text-black/40 font-bold tracking-[0.3em] text-[10px] uppercase mb-6 block reveal-text">
               {t.aboutHeader}
             </span>
-            <h2 className="text-5xl md:text-8xl font-thin text-dark tracking-tighter leading-[1.1] mb-12 italic">
+            <h2 className="text-4xl md:text-5xl font-semibold text-black tracking-tight leading-tight mb-16">
               {t.aboutTitle}
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-              <p className="text-black/60 text-lg font-light leading-relaxed">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start text-left">
+              <p className="text-black/50 text-lg font-medium leading-relaxed">
                 {t.aboutDesc}
               </p>
-              <div className="flex flex-col gap-8">
-                <Link href={`/${lang}/kurumsal/hakkimizda`} className="inline-flex items-center gap-6 text-dark font-black tracking-[0.3em] text-[10px] group uppercase">
+              <div className="flex flex-col justify-center items-start lg:items-center">
+                <Link href={`/${lang}/kurumsal/hakkimizda`} className="inline-flex items-center gap-6 text-[#1a1c1e] font-bold tracking-[0.3em] text-[10px] group uppercase">
                   <span className="relative">
                     {t.aboutButton}
-                    <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-gold scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></div>
+                    <div className="absolute -bottom-2 left-0 w-full h-[2px] bg-[#1a1c1e] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></div>
                   </span>
-                  <ChevronRight size={14} className="text-gold group-hover:translate-x-2 transition-transform" />
+                  <ChevronRight size={14} className="text-[#1a1c1e] group-hover:translate-x-2 transition-transform" />
                 </Link>
               </div>
             </div>
@@ -247,10 +247,10 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         </div>
 
         <div className="relative z-10 text-center max-w-5xl">
-          <span className="text-gold font-bold tracking-[0.5em] text-[12px] uppercase mb-12 block">
+          <span className="text-black/40 font-bold tracking-[0.3em] text-[10px] uppercase mb-6 block">
             {lang === 'tr' ? 'KÜRESEL ETKİ' : 'GLOBAL IMPACT'}
           </span>
-          <h2 className="text-4xl md:text-6xl font-thin text-black leading-tight tracking-tighter italic mb-16">
+          <h2 className="text-3xl md:text-5xl font-semibold text-black leading-tight tracking-tight mb-16">
             {lang === 'tr'
               ? "“Kıtalar arası kurduğumuz güçlü köprülerle, Türk sermayesini dünya pazarlarında gururla temsil ediyoruz.”"
               : "“We proudly represent Turkish capital in world markets through the strong bridges we build across continents.”"}
@@ -288,7 +288,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
           <div className="text-[20vw] font-black tracking-tighter leading-none whitespace-nowrap -rotate-6 translate-y-1/2">CEY YATIRIM</div>
         </div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <p className="text-2xl md:text-4xl font-thin leading-relaxed tracking-tighter italic mb-16 text-black/80">
+          <p className="text-2xl md:text-4xl font-medium leading-relaxed tracking-tight mb-16 text-[#1a1c1e]">
             {lang === 'tr'
               ? "“Sürdürülebilirlik ve inovasyon temelinde, küresel ölçekte değer yaratan stratejik yatırım ortağınız.”"
               : "“Your global strategic investment partner creating value based on sustainability and innovation.”"}

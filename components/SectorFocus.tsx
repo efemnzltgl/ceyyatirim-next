@@ -44,10 +44,10 @@ export default function SectorFocus({ lang, sectorList, header, title }: { lang:
 
             <div className="max-w-7xl mx-auto relative z-10">
                 <div className="text-center mb-32">
-                    <span className="text-gold font-bold tracking-[0.4em] text-[10px] uppercase mb-6 block">
+                    <span className="text-black/40 font-bold tracking-[0.3em] text-[10px] uppercase mb-4 block">
                         {header}
                     </span>
-                    <h2 className="text-5xl md:text-8xl font-thin text-dark tracking-tighter leading-[1.1] italic">
+                    <h2 className="text-4xl md:text-5xl font-semibold text-black tracking-tight leading-tight">
                         {title}
                     </h2>
                 </div>
@@ -97,7 +97,7 @@ export default function SectorFocus({ lang, sectorList, header, title }: { lang:
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-gold/20 -translate-y-1/2 translate-x-1/2 rounded-full group-hover:bg-gold/40 transition-colors z-10 blur-xl"></div>
 
                                 <div className="relative z-20 p-12">
-                                    <h3 className="text-3xl font-thin mb-4 text-black uppercase tracking-tight group-hover:text-gold transition-colors duration-700 italic">
+                                    <h3 className="text-2xl font-bold mb-4 text-[#1a1c1e] tracking-tight group-hover:text-[#b39359] transition-colors duration-500">
                                         {sector.title}
                                     </h3>
 

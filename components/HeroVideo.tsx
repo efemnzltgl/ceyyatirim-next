@@ -49,9 +49,9 @@ export default function HeroVideo({ lang = 'tr' }: { lang?: string }) {
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 flex flex-col items-center text-center mt-20">
-        <div className="overflow-hidden mb-4">
+         <div className="overflow-hidden mb-2 md:mb-4">
            <motion.h1 
-             className="text-6xl md:text-[8rem] font-black text-black leading-none tracking-tighter uppercase"
+             className="text-5xl md:text-7xl font-bold text-black leading-tight tracking-tight uppercase"
              initial={{ y: "100%", opacity: 0 }}
              animate={{ y: 0, opacity: 1 }}
              transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
@@ -59,9 +59,9 @@ export default function HeroVideo({ lang = 'tr' }: { lang?: string }) {
              {content.title}
            </motion.h1>
         </div>
-        <div className="overflow-hidden mb-8">
+         <div className="overflow-hidden mb-12">
            <motion.h1 
-             className="text-4xl md:text-7xl font-light text-black leading-none tracking-tight uppercase italic"
+             className="text-4xl md:text-6xl font-semibold text-black leading-tight tracking-tight uppercase"
              initial={{ y: "100%", opacity: 0 }}
              animate={{ y: 0, opacity: 1 }}
              transition={{ duration: 1, ease: [0.76, 0, 0.24, 1], delay: 0.1 }}
@@ -73,7 +73,7 @@ export default function HeroVideo({ lang = 'tr' }: { lang?: string }) {
         </div>
         
         <motion.p 
-          className="text-lg md:text-2xl text-black/60 max-w-2xl font-light mb-16"
+          className="text-lg md:text-2xl text-black/60 max-w-2xl font-medium mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.6 }}

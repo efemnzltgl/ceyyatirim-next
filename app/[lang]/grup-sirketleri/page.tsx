@@ -91,30 +91,22 @@ export default async function CompaniesPage({ params }: { params: Promise<{ lang
     return (
         <main className="bg-white min-h-screen">
             {/* Hero Section */}
-            <div className="relative h-[40vh] min-h-[350px] w-full bg-[#0a0a0b] overflow-hidden flex items-center pt-20">
-                <Image
-                    src="http://www.ceyyatirim.com/sites/other/ceyyatirim/uploads/slides/projeler-banner.jpg"
-                    alt={t.title}
-                    fill
-                    className="object-cover opacity-50 grayscale"
-                    priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-transparent"></div>
-                <div className="max-w-7xl mx-auto px-6 w-full text-center relative z-10">
-                    <span className="text-gold font-bold tracking-[0.4em] text-[10px] uppercase mb-4 block">
+            <div className="pt-40 pb-16 w-full bg-[#f8f9fa] text-center border-b border-black/[0.03]">
+                <div className="max-w-3xl mx-auto px-6">
+                    <span className="text-black/40 font-bold tracking-[0.3em] text-[10px] uppercase mb-6 block">
                         {t.subtitle}
                     </span>
-                    <h1 className="text-5xl md:text-7xl font-light text-white tracking-tighter leading-none italic">
+                    <h1 className="text-4xl md:text-5xl font-semibold text-black tracking-tight leading-tight mb-6">
                         {t.title}
                     </h1>
+                     <p className="text-black/50 text-lg font-medium leading-relaxed max-w-2xl mx-auto">
+                        {t.description}
+                    </p>
                 </div>
             </div>
 
-            <div className="py-24 px-6 bg-[#fcfcfc]">
+            <div className="py-24 px-6 bg-white">
                 <div className="max-w-7xl mx-auto">
-                    <p className="text-slate-500 text-lg font-light leading-relaxed mb-20 max-w-3xl border-l-[3px] border-gold pl-8 italic">
-                        {t.description}
-                    </p>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-slate-100/10">
                         {companies.map((company: any) => {
@@ -125,10 +117,10 @@ export default async function CompaniesPage({ params }: { params: Promise<{ lang
                                 <Link
                                     key={company._id}
                                     href={`/${lang}/grup-sirketleri/${company.slug?.current || '#'}`}
-                                    className="p-16 border border-slate-100 bg-white hover:bg-[#0a0a0b] group transition-all duration-700 flex flex-col items-center text-center relative overflow-hidden"
+                                    className="p-16 border border-slate-100/50 bg-white hover:z-10 hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] group transition-all duration-700 flex flex-col items-center text-center relative overflow-hidden rounded-[24px] m-1"
                                 >
                                     {/* Subtle index number or decor */}
-                                    <div className="absolute top-8 right-8 text-gold/10 font-bold text-4xl group-hover:text-gold/20 transition-all italic">/0{companies.indexOf(company) + 1}</div>
+                                    <div className="absolute top-8 right-8 text-black/[0.03] font-bold text-4xl group-hover:text-black/5 transition-all">/0{companies.indexOf(company) + 1}</div>
 
                                     <div className="h-28 w-full relative mb-12 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000">
                                         {company.logoUrl && (
@@ -141,11 +133,11 @@ export default async function CompaniesPage({ params }: { params: Promise<{ lang
                                         )}
                                     </div>
 
-                                    <h3 className="text-2xl font-light mb-6 text-[#1a1c1e] group-hover:text-white uppercase tracking-wider transition-colors italic">
+                                    <h3 className="text-xl font-bold mb-4 text-[#1a1c1e] group-hover:text-gold uppercase tracking-tight transition-colors">
                                         {name}
                                     </h3>
 
-                                    <p className="text-slate-500 group-hover:text-slate-400 leading-relaxed text-sm font-light transition-colors line-clamp-3">
+                                    <p className="text-black/50 group-hover:text-black/70 leading-relaxed text-sm font-medium transition-colors line-clamp-3">
                                         {desc}
                                     </p>
 

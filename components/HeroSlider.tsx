@@ -54,17 +54,17 @@ export default function HeroSlider({ slides, lang = 'tr' }: { slides: any[], lan
                 <div className="relative max-w-7xl mx-auto px-6 h-full flex items-center">
                   <div className="max-w-3xl">
                     {/* Üst Küçük Başlık */}
-                    <span className="text-[#b39359] font-bold tracking-[0.5em] text-[10px] uppercase mb-6 block border-l-2 border-[#b39359] pl-6 animate-in fade-in slide-in-from-left-8 duration-1000">
+                    <span className="text-black/50 font-bold tracking-[0.3em] text-[10px] uppercase mb-6 block border-l-2 border-black/30 pl-6 animate-in fade-in slide-in-from-left-8 duration-1000">
                       {lang === 'tr' ? 'HOŞ GELDİNİZ' : 'WELCOME'}
                     </span>
 
                     {/* Ana Başlık */}
-                    <h1 className="text-4xl md:text-8xl font-thin text-black leading-[1.1] tracking-tighter italic mb-8 animate-in fade-in slide-in-from-left-12 duration-1000 delay-200">
+                    <h1 className="text-4xl md:text-6xl font-bold text-[#1a1c1e] leading-[1.1] tracking-tight mb-8 animate-in fade-in slide-in-from-left-12 duration-1000 delay-200">
                       {title}
                     </h1>
 
                     {/* Alt Başlık */}
-                    <p className="text-lg md:text-xl text-black/60 font-light max-w-xl leading-relaxed mb-12 animate-in fade-in slide-in-from-left-16 duration-1000 delay-400">
+                    <p className="text-lg md:text-xl text-black/60 font-medium max-w-xl leading-relaxed mb-12 animate-in fade-in slide-in-from-left-16 duration-1000 delay-400">
                       {subtitle}
                     </p>
 
@@ -89,7 +89,6 @@ export default function HeroSlider({ slides, lang = 'tr' }: { slides: any[], lan
 
       {/* Scroll Down Indicator */}
       <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-4 animate-bounce opacity-40">
-        <span className="text-[10px] text-black/50 font-bold tracking-[0.3em] uppercase rotate-90 mb-4">Scroll</span>
         <div className="w-[1px] h-12 bg-black/20"></div>
       </div>
     </section>

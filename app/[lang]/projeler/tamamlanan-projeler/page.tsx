@@ -159,7 +159,7 @@ export default async function CompletedProjectsPage({ params }: { params: Promis
     ]);
 
     // Use sanity data if exists, otherwise fallback
-    const projects = sanityProjects.length > 0 ? sanityProjects : FALLBACK_PROJECTS;
+    const projects = sanityProjects?.length > 0 ? sanityProjects : FALLBACK_PROJECTS;
 
     const t = {
         tr: {
@@ -181,24 +181,14 @@ export default async function CompletedProjectsPage({ params }: { params: Promis
     return (
         <main className="bg-white min-h-screen">
             {/* Hero Section */}
-            <div className="relative h-[50vh] min-h-[400px] w-full bg-[#0a0a0b] overflow-hidden">
-                <Image
-                    src="http://www.ceyyatirim.com/sites/other/ceyyatirim/uploads/slides/projeler-banner.jpg"
-                    alt="Completed Projects"
-                    fill
-                    className="object-cover opacity-40 grayscale"
-                    priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-transparent"></div>
-                <div className="absolute bottom-0 left-0 w-full p-12 md:p-24">
-                    <div className="max-w-7xl mx-auto">
-                        <span className="text-gold font-bold tracking-[0.4em] text-[10px] uppercase mb-6 block">
-                            {t.subtitle}
-                        </span>
-                        <h1 className="text-5xl md:text-8xl font-light text-white tracking-tighter leading-none italic">
-                            {t.title}
-                        </h1>
-                    </div>
+            <div className="pt-40 pb-16 w-full bg-[#f8f9fa] text-center border-b border-black/[0.03]">
+                <div className="max-w-3xl mx-auto px-6">
+                    <span className="text-black/40 font-bold tracking-[0.3em] text-[10px] uppercase mb-6 block">
+                        {t.subtitle}
+                    </span>
+                    <h1 className="text-4xl md:text-5xl font-semibold text-black tracking-tight leading-tight">
+                        {t.title}
+                    </h1>
                 </div>
             </div>
 

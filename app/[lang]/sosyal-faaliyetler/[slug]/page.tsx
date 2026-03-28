@@ -80,26 +80,14 @@ export default async function SocialDetailPage({ params }: { params: Promise<{ l
     return (
         <main className="bg-white min-h-screen">
             {/* Hero Section */}
-            <div className="relative h-[55vh] min-h-[450px] w-full bg-[#0a0a0b] overflow-hidden">
-                {activity.imageUrl && (
-                    <Image
-                        src={activity.imageUrl}
-                        alt={title}
-                        fill
-                        className="object-cover opacity-50 grayscale"
-                        priority
-                    />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/40 to-transparent"></div>
-                <div className="absolute bottom-0 left-0 w-full p-12 md:p-24">
-                    <div className="max-w-7xl mx-auto">
-                        <span className="text-gold font-bold tracking-[0.4em] text-[10px] uppercase mb-6 block">
-                            {lang === 'tr' ? 'SOSYAL SORUMLULUK' : 'SOCIAL RESPONSIBILITY'}
-                        </span>
-                        <h1 className="text-5xl md:text-8xl font-light text-white tracking-tighter leading-none italic uppercase">
-                            {title}
-                        </h1>
-                    </div>
+            <div className="pt-40 pb-16 w-full bg-[#f8f9fa] text-center border-b border-black/[0.03]">
+                <div className="max-w-3xl mx-auto px-6">
+                    <span className="text-black/40 font-bold tracking-[0.3em] text-[10px] uppercase mb-6 block">
+                        {lang === 'tr' ? 'SOSYAL SORUMLULUK' : 'SOCIAL RESPONSIBILITY'}
+                    </span>
+                    <h1 className="text-4xl md:text-5xl font-semibold text-black tracking-tight leading-tight uppercase">
+                        {title}
+                    </h1>
                 </div>
             </div>
 
@@ -149,7 +137,7 @@ export default async function SocialDetailPage({ params }: { params: Promise<{ l
                                                 <div className="relative h-40 w-full overflow-hidden mb-4 grayscale group-hover:grayscale-0 transition-all duration-700">
                                                     <Image src={sData.imageUrl} alt={sData.title_tr} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
                                                 </div>
-                                                <span className="text-sm text-dark font-light group-hover:text-gold transition-colors italic block">
+                                                <span className="text-sm text-dark font-medium group-hover:text-gold transition-colors block mt-4">
                                                     {lang === 'tr' ? sData.title_tr : sData.title_en}
                                                 </span>
                                             </Link>
@@ -158,7 +146,7 @@ export default async function SocialDetailPage({ params }: { params: Promise<{ l
                                 </nav>
 
                                 <div className="mt-24 p-8 bg-slate-50 border border-slate-100">
-                                    <p className="text-[11px] text-slate-400 leading-relaxed font-light italic">
+                                    <p className="text-[11px] text-slate-400 leading-relaxed font-medium">
                                         {lang === 'tr'
                                             ? 'Cey Yatırım olarak toplumsal fayda sağlamayı amaçlayan her projenin yanında yer alıyoruz.'
                                             : 'As Cey Investment, we stand by every project aimed at providing social benefit.'}

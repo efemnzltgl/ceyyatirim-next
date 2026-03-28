@@ -70,127 +70,175 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
     const sanityOffices = await client.fetch(OFFICES_QUERY);
 
     const offices = sanityOffices.length > 0 ? sanityOffices : FALLBACK_OFFICES;
+    
+    // HQ is the first office
+    const hq = offices[0];
+    const hqCity = lang === 'tr' ? hq.city_tr : (hq.city_en || hq.city_tr);
+    const hqAddress = lang === 'tr' ? hq.address_tr : (hq.address_en || hq.address_tr);
 
     const t = {
         tr: {
-            title: 'İletişim',
-            subtitle: 'DÜNYA GENELİNDEKİ OPERASYON MERKEZLERİMİZ',
-            formTitle: 'BİZE ULAŞIN',
-            formSubtitle: 'Projelerimiz veya faaliyetlerimiz hakkında daha fazla bilgi almak için bizimle iletişime geçebilirsiniz.',
+            header: 'İLETİŞİM',
+            mainTitle: 'Projeniz için bizimle iletişime geçin',
+            mainDesc: 'Enerji ve inşaat projeleriniz için teklif almak veya detaylı bilgi edinmek için formu doldurabilirsiniz.',
+            otherCentersTitle: 'DİĞER MERKEZLERİMİZ',
+            phoneLabel: 'Telefon',
+            emailLabel: 'E-posta',
+            addressLabel: 'Adres',
         },
         en: {
-            title: 'Contact',
-            subtitle: 'OUR OPERATIONAL CENTERS WORLDWIDE',
-            formTitle: 'GET IN TOUCH',
-            formSubtitle: 'You can contact us to get more information about our projects or activities.',
+            header: 'CONTACT',
+            mainTitle: 'Contact us for your project',
+            mainDesc: 'You can fill out the form to request a quote or get detailed information for your energy and construction projects.',
+            otherCentersTitle: 'OUR OTHER CENTERS',
+            phoneLabel: 'Phone',
+            emailLabel: 'Email',
+            addressLabel: 'Address',
         }
     }[lang as 'tr' | 'en'];
 
     return (
-        <main className="bg-white min-h-screen">
-            {/* Hero Section */}
-            <div className="relative h-[40vh] min-h-[350px] w-full bg-[#f8f8f8] overflow-hidden flex items-center pt-20">
-                <Image
-                    src="http://www.ceyyatirim.com/sites/other/ceyyatirim/uploads/slides/projeler-banner.jpg"
-                    alt={t.title}
-                    fill
-                    className="object-cover opacity-10 grayscale"
-                    priority
-                />
-                <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
-                <div className="max-w-7xl mx-auto px-6 w-full text-center relative z-10">
-                    <span className="text-gold font-bold tracking-[0.4em] text-[10px] uppercase mb-4 block">
-                        {t.subtitle}
+        <main className="bg-[#f8f9fa] min-h-screen pt-32 pb-24">
+            
+            <div className="max-w-7xl mx-auto px-6">
+                
+                {/* 1. Header Section */}
+                <div className="text-center max-w-3xl mx-auto mb-16">
+                    <span className="text-black/40 font-bold tracking-[0.3em] text-[10px] uppercase mb-6 block">
+                        {t.header}
                     </span>
-                    <h1 className="text-5xl md:text-7xl font-light text-black tracking-tighter leading-none italic uppercase">
-                        {t.title}
+                    <h1 className="text-4xl md:text-5xl font-semibold text-black tracking-tight leading-tight mb-6">
+                        {t.mainTitle}
                     </h1>
+                    <p className="text-black/60 text-lg font-medium leading-relaxed max-w-2xl mx-auto">
+                        {t.mainDesc}
+                    </p>
                 </div>
-            </div>
 
-            <div className="py-32 px-6 bg-[#f8f9fa] relative overflow-hidden">
-                {/* Decorative Pattern */}
-                <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#1a1c1e 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+                {/* 2. Main Form & Media Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+                    
+                    {/* Left: Contact Form Card */}
+                    <div className="w-full">
+                        <ContactForm lang={lang} isDark={false} />
+                    </div>
 
-                <div className="max-w-7xl mx-auto relative z-10">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-32">
-                        {offices.map((office: any) => {
+                    {/* Right: Media Column */}
+                    <div className="flex flex-col gap-8 w-full h-full">
+                        {/* Upper Image Layer */}
+                        <div className="relative w-full aspect-video md:aspect-[16/10] bg-white rounded-[32px] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.08)] border border-black/[0.03]">
+                            <Image
+                                src="http://www.ceyyatirim.com/sites/other/ceyyatirim/uploads/slides/projeler-banner.jpg"
+                                alt="Cey Yatırım Headquarters"
+                                fill
+                                className="object-cover hover:scale-105 transition-transform duration-1000"
+                            />
+                        </div>
+                        
+                        {/* Lower Map Layer */}
+                        <div className="relative w-full aspect-video md:aspect-[16/10] bg-white rounded-[32px] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.08)] border border-black/[0.03] grayscale hover:grayscale-0 transition-all duration-700 p-2">
+                             <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3061.277885311277!2d32.8530495!3d39.8904664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d34f9a0c79cd6b%3A0xf63a7585a9dfc29e!2zQ2lubmFoIENkLiBObzoxOSwgMDY2OTAgw4dhbmtheWEvQW5rYXJh!5e0!3m2!1str!2str!4v1700000000000!5m2!1str!2str" 
+                                className="w-full h-full rounded-[24px] border-none"
+                                allowFullScreen={false} 
+                                loading="lazy" 
+                                referrerPolicy="no-referrer-when-downgrade"
+                            ></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                {/* 3. Main Contact Info Row */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-32">
+                    {/* Phone */}
+                    <div className="flex items-center gap-6 p-6">
+                        <div className="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center border border-slate-100 flex-shrink-0">
+                            <Phone className="w-5 h-5 text-black/70" />
+                        </div>
+                        <div>
+                            <p className="text-black font-semibold text-sm mb-1">{t.phoneLabel}</p>
+                            <a href={`tel:${hq.phone?.replace(/\s+/g, '')}`} className="text-slate-500 hover:text-black transition-colors text-sm">
+                                {hq.phone}
+                            </a>
+                        </div>
+                    </div>
+
+                    {/* Email */}
+                    <div className="flex items-center gap-6 p-6">
+                        <div className="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center border border-slate-100 flex-shrink-0">
+                            <Mail className="w-5 h-5 text-black/70" />
+                        </div>
+                        <div>
+                            <p className="text-black font-semibold text-sm mb-1">{t.emailLabel}</p>
+                            <a href={`mailto:${hq.email}`} className="text-slate-500 hover:text-black transition-colors text-sm">
+                                {hq.email}
+                            </a>
+                        </div>
+                    </div>
+
+                    {/* Address */}
+                    <div className="flex items-center gap-6 p-6">
+                        <div className="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center border border-slate-100 flex-shrink-0">
+                            <MapPin className="w-5 h-5 text-black/70" />
+                        </div>
+                        <div>
+                            <p className="text-black font-semibold text-sm mb-1">{t.addressLabel}</p>
+                            <p className="text-slate-500 text-sm leading-relaxed">
+                                {hqAddress}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* 4. Other Offices */}
+                <div className="border-t border-slate-200/60 pt-20">
+                    <div className="text-center mb-16">
+                        <span className="text-black/40 font-bold tracking-[0.3em] text-[10px] uppercase block">
+                            {t.otherCentersTitle}
+                        </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {/* Skip index 0 because it's the HQ shown above */}
+                        {offices.slice(1).map((office: any) => {
                             const city = lang === 'tr' ? office.city_tr : (office.city_en || office.city_tr);
                             const address = lang === 'tr' ? office.address_tr : (office.address_en || office.address_tr);
 
                             return (
-                                <div key={office._id} className="p-12 bg-white hover:bg-[#fcfcfc] group transition-all duration-700 flex flex-col shadow-sm hover:shadow-2xl hover:-translate-y-2 border border-slate-200/50">
-                                    <h3 className="text-xl font-light text-[#1a1c1e] group-hover:text-gold mb-8 tracking-tight uppercase italic border-b border-slate-100 group-hover:border-gold/30 pb-4 transition-all">
+                                <div key={office._id} className="p-8 bg-white rounded-3xl group transition-all duration-500 flex flex-col shadow-sm hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.08)] border border-slate-100 hover:border-black/[0.03]">
+                                    <h3 className="text-lg font-bold text-[#1a1c1e] mb-6 tracking-tight uppercase border-b border-slate-100 pb-4">
                                         {city}
                                     </h3>
-                                    <div className="space-y-6 flex-grow">
+                                    <div className="space-y-5 flex-grow">
                                         <div className="flex items-start gap-4">
-                                            <MapPin className="w-4 h-4 text-gold mt-1 flex-shrink-0" />
-                                            <p className="text-slate-500 group-hover:text-black/70 font-light text-sm leading-relaxed transition-colors">
+                                            <MapPin className="w-4 h-4 text-black/40 mt-1 flex-shrink-0" />
+                                            <p className="text-slate-500 font-medium text-xs leading-relaxed">
                                                 {address}
                                             </p>
                                         </div>
                                         {office.phone && (
                                             <div className="flex items-center gap-4">
-                                                <Phone className="w-4 h-4 text-gold flex-shrink-0" />
-                                                <a href={`tel:${office.phone.replace(/\s+/g, '')}`} className="text-slate-500 group-hover:text-black/70 font-light text-sm hover:text-gold transition-colors">
+                                                <Phone className="w-4 h-4 text-black/40 flex-shrink-0" />
+                                                <a href={`tel:${office.phone.replace(/\s+/g, '')}`} className="text-slate-500 font-medium text-xs hover:text-black transition-colors">
                                                     {office.phone}
                                                 </a>
                                             </div>
                                         )}
-                                        {office.fax && (
-                                            <div className="flex items-center gap-4">
-                                                <Printer className="w-4 h-4 text-gold flex-shrink-0" />
-                                                <p className="text-slate-500 group-hover:text-black/70 font-light text-sm italic transition-colors">
-                                                    {office.fax}
-                                                </p>
-                                            </div>
-                                        )}
                                         {office.email && (
                                             <div className="flex items-center gap-4">
-                                                <Mail className="w-4 h-4 text-gold flex-shrink-0" />
-                                                <a href={`mailto:${office.email}`} className="text-slate-500 group-hover:text-black/70 font-light text-sm hover:text-gold transition-colors">
+                                                <Mail className="w-4 h-4 text-black/40 flex-shrink-0" />
+                                                <a href={`mailto:${office.email}`} className="text-slate-500 font-medium text-xs hover:text-black transition-colors">
                                                     {office.email}
                                                 </a>
                                             </div>
                                         )}
                                     </div>
-                                    <div className="mt-12 h-[1px] w-12 bg-gold group-hover:w-24 transition-all duration-700"></div>
                                 </div>
                             );
                         })}
                     </div>
-
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start bg-white p-12 md:p-24 border border-black/5 relative overflow-hidden group/form shadow-2xl">
-                        {/* Decor - Premium Glow */}
-                        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gold/5 -translate-y-1/2 translate-x-1/2 rounded-full blur-[120px]"></div>
-                        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gold/10 translate-y-1/2 -translate-x-1/2 rounded-full blur-[80px]"></div>
-
-                        <div className="relative z-10">
-                            <span className="text-gold font-bold tracking-[0.4em] text-[10px] uppercase mb-8 block reveal-text">
-                                {t.formTitle}
-                            </span>
-                            <h2 className="text-4xl md:text-7xl font-light text-black mb-10 tracking-tighter italic uppercase leading-tight">
-                                {t.formTitle}
-                            </h2>
-                            <p className="text-black/60 font-light leading-relaxed mb-16 max-w-md italic border-l border-gold/40 pl-8">
-                                {t.formSubtitle}
-                            </p>
-
-                            <div className="mt-24 space-y-6">
-                                <div>
-                                    <p className="text-[10px] font-bold tracking-[0.3em] text-gold uppercase mb-2">Resmi Bilgi Hattı</p>
-                                    <p className="text-3xl font-light text-black tracking-tighter italic">+90 312 443 33 33</p>
-                                </div>
-                                <div className="w-12 h-[1px] bg-gold group-hover/form:w-24 transition-all duration-700"></div>
-                            </div>
-                        </div>
-
-                        <div className="relative z-10">
-                            <ContactForm lang={lang} isDark={false} />
-                        </div>
-                    </div>
                 </div>
+
             </div>
         </main>
     );
