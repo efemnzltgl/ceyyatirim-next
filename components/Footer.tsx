@@ -46,16 +46,17 @@ export default async function Footer({ lang }: { lang: string }) {
 
         {/* Column 1: Identity */}
         <div className="space-y-6">
-          <div className="flex items-center gap-1">
-            <span className="text-black font-light tracking-[0.4em] text-xl">CEY</span>
-            <span className="text-gold font-bold text-xl uppercase tracking-tighter">YATIRIM</span>
+          <div className="flex items-center">
+            <Link href={`/${currentLang}`} className="inline-block relative w-48 h-12">
+              <img src="/logo.png" alt="Cey Yatırım Logo" className="object-contain object-left w-full h-full" />
+            </Link>
           </div>
-          <p className="text-[10px] leading-relaxed text-black/70 tracking-[0.1em] font-medium uppercase max-w-xs">
+          <p className="text-[11px] leading-relaxed text-black/70 font-medium uppercase max-w-xs mt-2">
             {settings?.footerText?.[currentLang] || (currentLang === 'tr'
               ? "Güçlü sermaye yapısı ve vizyoner projelerle geleceğe değer katıyoruz."
               : "We add value to the future with strong capital structure and visionary projects.")}
           </p>
-          <div className="flex gap-5 pt-2">
+          <div className="flex gap-4 pt-2">
             {settings?.socials?.linkedin && (
               <a href={settings.socials.linkedin} target="_blank" className="text-black/60 hover:text-gold transition-colors">
                 <Linkedin size={16} strokeWidth={1.5} />
@@ -77,10 +78,10 @@ export default async function Footer({ lang }: { lang: string }) {
         {/* Column 2: Quick Links (Grouped) */}
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-4">
-            <h4 className="text-black text-[9px] font-black tracking-[0.3em] uppercase opacity-40">
+            <h4 className="text-black text-[10px] font-bold tracking-wider uppercase opacity-40">
               {currentLang === 'tr' ? 'KURUMSAL' : 'CORPORATE'}
             </h4>
-            <ul className="text-[9px] space-y-3 tracking-[0.2em] font-bold uppercase">
+            <ul className="text-[10px] space-y-2 font-medium uppercase">
               {menu.kurumsal.map((item: any) => (
                 <li key={item.href}>
                   <Link href={`/${currentLang}${item.href}`} className="hover:text-gold transition-colors">
@@ -96,10 +97,10 @@ export default async function Footer({ lang }: { lang: string }) {
             </ul>
           </div>
           <div className="space-y-4">
-            <h4 className="text-black text-[9px] font-black tracking-[0.3em] uppercase opacity-40">
+            <h4 className="text-black text-[10px] font-bold tracking-wider uppercase opacity-40">
               {currentLang === 'tr' ? 'FAALİYETLER' : 'ACTIVITIES'}
             </h4>
-            <ul className="text-[9px] space-y-3 tracking-[0.2em] font-bold uppercase">
+            <ul className="text-[10px] space-y-2 font-medium uppercase">
               {menu.sektorler.slice(0, 2).map((item: any) => (
                 <li key={item.href}>
                   <Link href={`/${currentLang}${item.href}`} className="hover:text-gold transition-colors">
@@ -123,25 +124,25 @@ export default async function Footer({ lang }: { lang: string }) {
 
         {/* Column 3: Contact */}
         <div className="space-y-6">
-          <h4 className="text-black text-[9px] font-black tracking-[0.3em] uppercase opacity-40">
+          <h4 className="text-black text-[10px] font-bold tracking-wider uppercase opacity-40">
             {currentLang === 'tr' ? 'İLETİŞİM' : 'CONTACT'}
           </h4>
-          <div className="space-y-4">
+          <div className="space-y-3">
             <div className="flex gap-3">
-              <MapPin size={14} className="text-gold flex-shrink-0 mt-0.5" />
-              <p className="text-[9px] tracking-[0.1em] font-medium leading-relaxed uppercase text-black/70">
+              <MapPin size={16} className="text-gold flex-shrink-0 mt-0.5" />
+              <p className="text-[10px] tracking-wide font-medium leading-relaxed uppercase text-black/70">
                 {settings?.address?.[currentLang] || "Ankara / TÜRKİYE"}
               </p>
             </div>
             <div className="flex gap-3 items-center">
-              <Mail size={14} className="text-gold flex-shrink-0" />
-              <a href={`mailto:${settings?.email || 'info@ceyyatirim.com'}`} className="text-[9px] tracking-[0.2em] font-bold text-black/70 hover:text-black transition-colors">
+              <Mail size={16} className="text-gold flex-shrink-0" />
+              <a href={`mailto:${settings?.email || 'info@ceyyatirim.com'}`} className="text-[10px] tracking-wide font-bold text-black/70 hover:text-black transition-colors">
                 {settings?.email || 'INFO@CEYYATIRIM.COM'}
               </a>
             </div>
             <div className="flex gap-3 items-center">
-              <Phone size={14} className="text-gold flex-shrink-0" />
-              <a href={`tel:${settings?.phone?.replace(/\s+/g, '')}`} className="text-[9px] tracking-[0.2em] font-bold text-black/70 hover:text-black transition-colors">
+              <Phone size={16} className="text-gold flex-shrink-0" />
+              <a href={`tel:${settings?.phone?.replace(/\s+/g, '')}`} className="text-[10px] tracking-wide font-bold text-black/70 hover:text-black transition-colors">
                 {settings?.phone || '+90 312 443 33 33'}
               </a>
             </div>
@@ -150,20 +151,19 @@ export default async function Footer({ lang }: { lang: string }) {
       </div>
 
       {/* Bottom Copyright */}
-      <div className="max-w-7xl mx-auto px-6 border-t border-black/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
-        <div className="text-[8px] tracking-[0.3em] uppercase font-medium text-black/70">
+      <div className="max-w-7xl mx-auto px-6 border-t border-black/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="text-[9px] tracking-widest uppercase font-medium text-black/70">
           © {new Date().getFullYear()} CEY YATIRIM HOLDİNG. ALL RIGHTS RESERVED.
         </div>
 
-        <div className="flex items-center gap-6">
-          {/* Yeni Slogan ve Grup Vurgusu */}
-          <span className="text-[8px] tracking-[0.4em] uppercase font-black text-gold">
+        <div className="flex items-center gap-4">
+          <span className="text-[9px] tracking-widest uppercase font-bold text-gold">
             {currentLang === 'tr' ? 'GELECEĞİN YATIRIM VİZYONU' : 'INVESTMENT VISION OF THE FUTURE'}
           </span>
 
-          <div className="h-[1px] w-8 bg-gold/30"></div>
+          <div className="h-[1px] w-6 bg-gold/30"></div>
 
-          <span className="text-[8px] tracking-[0.3em] uppercase font-bold text-black/60">
+          <span className="text-[9px] tracking-widest uppercase font-bold text-black/60">
             {currentLang === 'tr' ? 'BİR CEYLAN GRUP A.Ş. KURULUŞUDUR' : 'A CEYLAN GROUP INC. COMPANY'}
           </span>
         </div>
