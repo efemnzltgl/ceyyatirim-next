@@ -87,10 +87,7 @@ export default function HeroSlider({ slides, lang = 'tr' }: { slides: any[], lan
         })}
       </Swiper>
 
-      {/* Scroll Down Indicator */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-4 animate-bounce opacity-40">
-        <div className="w-[1px] h-12 bg-black/20"></div>
-      </div>
+
     </section>
   );
 }
