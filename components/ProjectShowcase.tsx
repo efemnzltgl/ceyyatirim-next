@@ -28,9 +28,9 @@ export default function ProjectShowcase({ projects, lang, header, title, viewAll
     if (!projects || projects.length === 0) return null;
 
     return (
-        <section className="py-40 relative overflow-hidden bg-[#0a0a0b]">
+        <section className="py-40 relative overflow-hidden bg-white">
             {/* Ambient Background (Ken Burns) */}
-            <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden bg-[#0a0a0b]">
+            <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden bg-white">
                 <div 
                   className="w-full h-full bg-cover bg-center opacity-10"
                   style={{ 
@@ -39,11 +39,11 @@ export default function ProjectShowcase({ projects, lang, header, title, viewAll
                   }}
                 />
                  
-                <video autoPlay muted loop playsInline className="absolute top-0 left-0 w-full h-full object-cover opacity-30">
+                <video autoPlay muted loop playsInline className="absolute top-0 left-0 w-full h-full object-cover opacity-10">
                     <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" type="video/mp4" />
                 </video>
                 
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/80 to-[#0a0a0b]"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-white"></div>
                 
                 <style jsx>{`
                   @keyframes kenBurnsProject {
@@ -59,13 +59,13 @@ export default function ProjectShowcase({ projects, lang, header, title, viewAll
                         <span className="text-gold font-bold tracking-[0.4em] text-[10px] uppercase mb-6 block">
                             {header}
                         </span>
-                        <h2 className="text-5xl md:text-7xl font-light text-white tracking-tighter leading-tight italic drop-shadow-lg">
+                        <h2 className="text-5xl md:text-7xl font-light text-black tracking-tighter leading-tight italic drop-shadow-sm">
                             {title}
                         </h2>
                     </div>
                     <Link
                         href={`/${lang}/projeler`}
-                        className="group flex items-center gap-4 text-[11px] font-bold tracking-[0.3em] text-white hover:text-gold transition-all pb-2 border-b border-transparent hover:border-gold"
+                        className="group flex items-center gap-4 text-[11px] font-bold tracking-[0.3em] text-black hover:text-gold transition-all pb-2 border-b border-transparent hover:border-gold"
                     >
                         {viewAllText}
                         <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
@@ -141,12 +141,12 @@ export default function ProjectShowcase({ projects, lang, header, title, viewAll
 
                 {/* Custom Navigation */}
                 <div className="absolute top-1/2 -translate-y-1/2 left-4 md:left-12 z-20">
-                    <button className="project-prev w-16 h-16 rounded-full border border-white/20 bg-[#0a0a0b]/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-gold hover:border-gold transition-all -translate-x-12 opacity-0 group-hover/slider:translate-x-0 group-hover/slider:opacity-100 duration-500">
+                    <button className="project-prev w-16 h-16 rounded-full border border-black/10 bg-white/80 backdrop-blur-md flex items-center justify-center text-black hover:bg-gold hover:text-white hover:border-gold transition-all -translate-x-12 opacity-0 group-hover/slider:translate-x-0 group-hover/slider:opacity-100 duration-500">
                         <ChevronLeft className="w-6 h-6" />
                     </button>
                 </div>
                 <div className="absolute top-1/2 -translate-y-1/2 right-4 md:right-12 z-20">
-                    <button className="project-next w-16 h-16 rounded-full border border-white/20 bg-[#0a0a0b]/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-gold hover:border-gold transition-all translate-x-12 opacity-0 group-hover/slider:translate-x-0 group-hover/slider:opacity-100 duration-500">
+                    <button className="project-next w-16 h-16 rounded-full border border-black/10 bg-white/80 backdrop-blur-md flex items-center justify-center text-black hover:bg-gold hover:text-white hover:border-gold transition-all translate-x-12 opacity-0 group-hover/slider:translate-x-0 group-hover/slider:opacity-100 duration-500">
                         <ChevronRight className="w-6 h-6" />
                     </button>
                 </div>

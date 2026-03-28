@@ -80,12 +80,12 @@ export default function SectorFocus({ lang, sectorList, header, title }: { lang:
                                     href={`/${lang}${sector.href}`}
                                     onMouseEnter={() => setActiveSector(i)}
                                     onMouseLeave={() => setActiveSector(null)}
-                                    className={`relative h-[600px] flex flex-col justify-end transition-all duration-700 bg-dark overflow-hidden group border border-white/10 w-full block ${activeSector === i ? 'shadow-2xl -translate-y-4 border-gold' : ''
+                                    className={`relative h-[600px] flex flex-col justify-end transition-all duration-700 bg-white overflow-hidden group border border-black/5 w-full block ${activeSector === i ? 'shadow-[0_30px_60px_rgba(0,0,0,0.1)] -translate-y-4 border-gold' : ''
                                         }`}
                                 >
                                 {/* Background Image */}
                                 <div className="absolute inset-0 z-0 select-none pointer-events-none">
-                                    <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-transparent z-10 opacity-90 group-hover:opacity-80 transition-opacity duration-700"></div>
+                                    <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent z-10 opacity-90 group-hover:opacity-80 transition-opacity duration-700"></div>
                                     <img
                                         src={sector.image}
                                         alt={sector.title}
@@ -97,12 +97,12 @@ export default function SectorFocus({ lang, sectorList, header, title }: { lang:
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-gold/20 -translate-y-1/2 translate-x-1/2 rounded-full group-hover:bg-gold/40 transition-colors z-10 blur-xl"></div>
 
                                 <div className="relative z-20 p-12">
-                                    <h3 className="text-2xl font-light mb-6 text-white uppercase tracking-tight group-hover:text-gold transition-colors italic">
+                                    <h3 className="text-2xl font-light mb-6 text-black uppercase tracking-tight group-hover:text-gold transition-colors italic">
                                         {sector.title}
                                     </h3>
 
                                     <div className={`overflow-hidden transition-all duration-700 max-h-0 ${activeSector === i ? 'max-h-40 mb-8' : ''}`}>
-                                        <p className="text-slate-300 font-light text-sm leading-relaxed">
+                                        <p className="text-slate-600 font-light text-sm leading-relaxed">
                                             {sector.desc}
                                         </p>
                                     </div>

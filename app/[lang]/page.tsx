@@ -235,26 +235,26 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
       </ScrollReveal>
 
       {/* 6. SECTION: Global Vision Banner */}
-      <ScrollReveal className="relative h-[600px] flex items-center justify-center overflow-hidden bg-dark">
+      <ScrollReveal className="relative h-[600px] flex items-center justify-center overflow-hidden bg-[#f8f8f8]">
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
             alt="Global Networking"
-            className="w-full h-full object-cover opacity-20 transition-transform duration-[10s] hover:scale-110"
+            className="w-full h-full object-cover opacity-10 transition-transform duration-[10s] hover:scale-110"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-dark px-6"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#f8f8f8] via-[#f8f8f8]/50 to-[#f8f8f8] px-6"></div>
         </div>
 
         <div className="relative z-10 text-center max-w-5xl">
           <span className="text-gold font-bold tracking-[0.5em] text-[12px] uppercase mb-12 block">
             {lang === 'tr' ? 'KÜRESEL ETKİ' : 'GLOBAL IMPACT'}
           </span>
-          <h2 className="text-4xl md:text-6xl font-light text-white leading-tight tracking-tight italic mb-12">
+          <h2 className="text-4xl md:text-6xl font-light text-black leading-tight tracking-tight italic mb-12">
             {lang === 'tr'
               ? "“Kıtalar arası kurduğumuz güçlü köprülerle, Türk sermayesini dünya pazarlarında gururla temsil ediyoruz.”"
               : "“We proudly represent Turkish capital in world markets through the strong bridges we build across continents.”"}
           </h2>
-          <div className="flex items-center justify-center gap-12 text-white/40 text-[10px] font-bold tracking-[0.2em] uppercase">
+          <div className="flex items-center justify-center gap-12 text-black/50 text-[10px] font-bold tracking-[0.2em] uppercase">
             <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-gold"></div> MIAMI</div>
             <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-gold"></div> ANKARA</div>
             <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-gold"></div> ISTANBUL</div>
@@ -281,7 +281,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
       </ScrollReveal>
 
       {/* 8. SECTION: Final CTA */}
-      <ScrollReveal className="py-40 px-6 bg-dark text-white relative overflow-hidden">
+      <ScrollReveal className="py-40 px-6 bg-white text-black relative overflow-hidden">
         <div className="absolute top-0 right-0 w-full h-full opacity-5 pointer-events-none grayscale select-none overflow-hidden hover:scale-105 transition-transform duration-[10s]">
           <div className="text-[20vw] font-black tracking-tighter leading-none whitespace-nowrap -rotate-6 translate-y-1/2">CEY YATIRIM</div>
         </div>
@@ -291,7 +291,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
               ? "“Sürdürülebilirlik ve inovasyon temelinde, küresel ölçekte değer yaratan stratejik yatırım ortağınız.”"
               : "“Your global strategic investment partner creating value based on sustainability and innovation.”"}
           </p>
-          <Link href={`/${lang}/iletisim`} className="inline-block px-16 py-6 border border-gold text-gold text-[11px] font-bold tracking-[0.4em] hover:bg-gold hover:text-dark transition-all duration-700 uppercase">
+          <Link href={`/${lang}/iletisim`} className="inline-block px-16 py-6 border border-gold text-gold text-[11px] font-bold tracking-[0.4em] hover:bg-gold hover:text-white transition-all duration-700 uppercase">
             {lang === 'tr' ? 'BİZE ULAŞIN' : 'CONTACT US'}
           </Link>
         </div>

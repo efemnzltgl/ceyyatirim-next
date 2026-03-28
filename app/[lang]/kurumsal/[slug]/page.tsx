@@ -65,7 +65,7 @@ export default async function CorporatePage({ params }: { params: Promise<{ lang
     return (
       <main className="pt-40 pb-20 bg-white min-h-screen">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <h1 className="text-2xl font-light text-dark opacity-50 uppercase tracking-widest">
+          <h1 className="text-2xl font-light text-black opacity-50 uppercase tracking-widest">
             {lang === 'tr' ? 'Sayfa Hazırlanıyor' : 'Page Under Construction'}
           </h1>
         </div>
@@ -81,23 +81,23 @@ export default async function CorporatePage({ params }: { params: Promise<{ lang
   return (
     <main className="bg-white min-h-screen">
       {/* Hero Header Area */}
-      <div className="relative h-[60vh] min-h-[400px] w-full bg-dark overflow-hidden">
+      <div className="relative h-[60vh] min-h-[400px] w-full bg-[#f8f8f8] overflow-hidden border-b border-black/5">
         {displayImage && (
           <Image
             src={displayImage}
             alt={title}
             fill
-            className="object-cover opacity-60 grayscale"
+            className="object-cover opacity-10 grayscale"
             priority
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#f8f8f8] via-[#f8f8f8]/80 to-transparent"></div>
         <div className="absolute bottom-0 left-0 w-full p-12 md:p-24">
           <div className="max-w-7xl mx-auto">
             <span className="text-gold font-bold tracking-[0.4em] text-[10px] uppercase mb-6 block reveal-text">
               {lang === 'tr' ? 'KURUMSAL' : 'CORPORATE'}
             </span>
-            <h1 className="text-5xl md:text-8xl font-light text-white tracking-tighter leading-none reveal-text italic">
+            <h1 className="text-5xl md:text-8xl font-light text-black tracking-tighter leading-none reveal-text italic">
               {title}
             </h1>
           </div>

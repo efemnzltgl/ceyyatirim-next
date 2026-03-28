@@ -111,7 +111,7 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
         <div className="space-y-6">
             {/* Main Featured Image */}
             <div
-                className="relative h-[400px] md:h-[550px] w-full overflow-hidden rounded-md group cursor-pointer border border-white/5"
+                className="relative h-[400px] md:h-[550px] w-full overflow-hidden rounded-md group cursor-pointer border border-black/5"
                 onClick={() => openLightbox(0)}
             >
                 <Image
@@ -131,7 +131,7 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
                     {galleryImages.map((img, idx) => (
                         <div
                             key={idx}
-                            className="relative h-32 md:h-40 w-full overflow-hidden rounded-md cursor-pointer group border border-white/5"
+                            className="relative h-32 md:h-40 w-full overflow-hidden rounded-md cursor-pointer group border border-black/5"
                             onClick={() => openLightbox(idx + 1)}
                         >
                             <Image
@@ -151,7 +151,7 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
             {/* Lightbox Modal (React Portal kullanarak hiyerarşiden tamamen koparıldı, Navbar çakışmasını önler) */}
             {lightboxOpen && typeof document !== 'undefined' ? createPortal(
                 <div
-                    className="fixed inset-0 z-[999999] bg-[#0a0a0b]/95 flex items-center justify-center backdrop-blur-xl select-none"
+                    className="fixed inset-0 z-[999999] bg-white/95 flex items-center justify-center backdrop-blur-xl select-none"
                     onClick={handleBackgroundClick}
                     onTouchStart={onTouchStart}
                     onTouchMove={onTouchMove}
@@ -163,7 +163,7 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
                 >
                     {/* Görünür Kapatma Butonu */}
                     <button
-                        className="fixed top-4 right-4 md:top-6 md:right-6 z-[10010] bg-black/60 border border-white/10 text-white hover:text-black hover:bg-gold transition-all duration-300 p-2 md:p-3 rounded-full shadow-2xl"
+                        className="fixed top-4 right-4 md:top-6 md:right-6 z-[10010] bg-white/80 border border-black/10 text-black hover:text-white hover:bg-gold transition-all duration-300 p-2 md:p-3 rounded-full shadow-sm hover:shadow-lg"
                         onClick={closeLightbox}
                         title="Kapat (ESC)"
                     >
@@ -172,7 +172,7 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
 
                     {/* Görünür Sol/Sağ Butonları (Mobilde küçültüldü, transparanlaştırıldı) */}
                     <button
-                        className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 z-[10005] bg-black/30 md:bg-black/50 border border-white/10 text-white/70 hover:text-black hover:bg-gold transition-all duration-300 p-2 md:p-4 rounded-full shadow-lg backdrop-blur-sm"
+                        className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 z-[10005] bg-white/50 md:bg-white/80 border border-black/10 text-black/70 hover:text-white hover:bg-gold transition-all duration-300 p-2 md:p-4 rounded-full shadow-sm hover:shadow-lg backdrop-blur-sm"
                         onClick={prevImage}
                         title="Önceki Görsel (Sol Ok)"
                     >
@@ -180,7 +180,7 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
                     </button>
 
                     <button
-                        className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 z-[10005] bg-black/30 md:bg-black/50 border border-white/10 text-white/70 hover:text-black hover:bg-gold transition-all duration-300 p-2 md:p-4 rounded-full shadow-lg backdrop-blur-sm"
+                        className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 z-[10005] bg-white/50 md:bg-white/80 border border-black/10 text-black/70 hover:text-white hover:bg-gold transition-all duration-300 p-2 md:p-4 rounded-full shadow-sm hover:shadow-lg backdrop-blur-sm"
                         onClick={nextImage}
                         title="Sonraki Görsel (Sağ Ok)"
                     >
@@ -212,13 +212,13 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
 
                     {/* Caption */}
                     {images[currentIndex].caption && (
-                        <div className="absolute bottom-10 left-0 right-0 text-center text-white/90 text-sm font-light tracking-wide px-4">
+                        <div className="absolute bottom-10 left-0 right-0 text-center text-black/90 text-sm font-light tracking-wide px-4">
                             {images[currentIndex].caption}
                         </div>
                     )}
 
                     {/* Sayaç */}
-                    <div className="fixed top-4 left-4 md:top-8 md:left-8 z-[10005] text-white/70 text-[10px] md:text-xs font-bold tracking-[0.3em] bg-black/50 px-3 md:px-4 py-2 rounded-full border border-white/5 backdrop-blur-md">
+                    <div className="fixed top-4 left-4 md:top-8 md:left-8 z-[10005] text-black/70 text-[10px] md:text-xs font-bold tracking-[0.3em] bg-white/80 px-3 md:px-4 py-2 rounded-full border border-black/5 backdrop-blur-md shadow-sm">
                         {currentIndex + 1} / {images.length}
                     </div>
                 </div>,

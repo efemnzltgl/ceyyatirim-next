@@ -86,12 +86,12 @@ export default function Navbar() {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 w-full z-[9999] transition-all duration-700 pointer-events-none ${scrolled ? 'bg-[#0a0a0b]/40 backdrop-blur-2xl border-b border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.5)] py-2' : 'bg-transparent border-b border-transparent py-4'}`}>
+      <header className={`fixed top-0 left-0 w-full z-[9999] transition-all duration-700 pointer-events-none ${scrolled ? 'bg-white/90 backdrop-blur-2xl border-b border-black/5 shadow-[0_30px_60px_rgba(0,0,0,0.05)] py-2' : 'bg-transparent border-b border-transparent py-4'}`}>
         <div className="pointer-events-auto">
           {/* Top Bar - Sadece scroll edilmediğinde */}
           {!scrolled && (
-            <div className="hidden border-b border-white/5 md:block">
-              <div className="max-w-7xl mx-auto px-6 h-10 flex justify-between items-center text-[9px] tracking-[0.3em] font-bold text-white/40 uppercase">
+            <div className="hidden border-b border-black/5 md:block">
+              <div className="max-w-7xl mx-auto px-6 h-10 flex justify-between items-center text-[9px] tracking-[0.3em] font-bold text-black/50 uppercase">
                 <div className="flex gap-6 italic">
                   {menuItems.grupSirketleri.map((company) => (
                     <Link
@@ -115,7 +115,7 @@ export default function Navbar() {
             {/* Logo - Sola Yaslı */}
             <div className="flex-shrink-0 w-40 md:w-52 lg:w-60">
               <Link href={`/${currentLang}`} className="flex items-center group z-[1001]">
-                <img src="/logo.png" alt="Cey Yatırım Logo" className="h-auto w-full object-contain object-left transition-transform duration-500 group-hover:scale-105 drop-shadow-[0_0_10px_rgba(255,255,255,0.1)]" />
+                <img src="/logo.png" alt="Cey Yatırım Logo" className="h-auto w-full object-contain object-left transition-transform duration-500 group-hover:scale-105 drop-shadow-[0_0_10px_rgba(0,0,0,0.1)]" />
               </Link>
             </div>
 
@@ -132,18 +132,18 @@ export default function Navbar() {
                   >
                     {link.type === 'dropdown' ? (
                       <div className="inline-block">
-                        <button className={`flex items-center gap-1 text-[10px] font-black tracking-[0.2em] uppercase transition-colors outline-none cursor-pointer ${isHovered === link.key ? 'text-gold' : 'text-white/70 hover:text-white'}`}>
+                        <button className={`flex items-center gap-1 text-[10px] font-black tracking-[0.2em] uppercase transition-colors outline-none cursor-pointer ${isHovered === link.key ? 'text-gold' : 'text-black/70 hover:text-black'}`}>
                           {currentLang === 'tr' ? link.tr : link.en}
                           <ChevronDown size={10} className={`mt-0.5 transition-transform duration-300 ${isHovered === link.key ? 'rotate-180' : ''}`} />
                         </button>
                         {isHovered === link.key && (
                           <div className="absolute top-full left-1/2 -translate-x-1/2 w-64 pt-0 z-[1002]">
-                            <div className="bg-[#111111] border border-white/10 p-2 shadow-[0_30px_60px_rgba(0,0,0,0.8)] mt-2">
+                            <div className="bg-white border border-black/5 p-2 shadow-[0_30px_60px_rgba(0,0,0,0.1)] mt-2">
                               {menuItems[link.key as keyof typeof menuItems].map((item) => (
                                 <Link
                                   key={item.href}
                                   href={`/${currentLang}${item.href}`}
-                                  className="block py-4 px-8 text-[10px] text-white/50 hover:text-gold hover:bg-white/5 transition-all border-b border-white/5 last:border-0 tracking-[0.2em] font-bold uppercase"
+                                  className="block py-4 px-8 text-[10px] text-black/60 hover:text-gold hover:bg-black/5 transition-all border-b border-black/5 last:border-0 tracking-[0.2em] font-bold uppercase"
                                   onClick={() => setIsHovered(null)}
                                 >
                                   {currentLang === 'tr' ? item.tr : item.en}
@@ -156,7 +156,7 @@ export default function Navbar() {
                     ) : (
                       <Link
                         href={`/${currentLang}${link.href || ''}`}
-                        className={`text-[10px] font-black tracking-[0.2em] uppercase transition-colors ${pathname === `/${currentLang}${link.href}` ? 'text-gold' : 'text-white/70 hover:text-white'}`}
+                        className={`text-[10px] font-black tracking-[0.2em] uppercase transition-colors ${pathname === `/${currentLang}${link.href}` ? 'text-gold' : 'text-black/70 hover:text-black'}`}
                       >
                         {currentLang === 'tr' ? link.tr : link.en}
                       </Link>
@@ -166,9 +166,9 @@ export default function Navbar() {
               </div>
 
               {/* Language Switch */}
-              <div className="flex items-center gap-4 text-[10px] font-black border-l border-white/10 pl-8">
-                <Link href={getAlternatePath('tr')} className={currentLang === 'tr' ? 'text-gold' : 'text-white/20 hover:text-white transition-colors'}>TR</Link>
-                <Link href={getAlternatePath('en')} className={currentLang === 'en' ? 'text-gold' : 'text-white/20 hover:text-white transition-colors'}>EN</Link>
+              <div className="flex items-center gap-4 text-[10px] font-black border-l border-black/10 pl-8">
+                <Link href={getAlternatePath('tr')} className={currentLang === 'tr' ? 'text-gold' : 'text-black/40 hover:text-black transition-colors'}>TR</Link>
+                <Link href={getAlternatePath('en')} className={currentLang === 'en' ? 'text-gold' : 'text-black/40 hover:text-black transition-colors'}>EN</Link>
               </div>
 
               {/* Yönetim Butonu */}
@@ -183,7 +183,7 @@ export default function Navbar() {
 
             {/* Mobile menu button */}
             <button
-              className="lg:hidden p-2 text-white/70 z-[10003] relative"
+              className="lg:hidden p-2 text-black/70 z-[10003] relative"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -194,21 +194,21 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 bg-[#0a0a0b] z-[10000] lg:hidden flex flex-col pt-32 px-10 overflow-y-auto animate-in fade-in duration-300">
+        <div className="fixed inset-0 bg-white/95 backdrop-blur-md z-[10000] lg:hidden flex flex-col pt-32 px-10 overflow-y-auto animate-in fade-in duration-300">
           <button 
             onClick={() => setIsMobileMenuOpen(false)} 
-            className="absolute top-6 right-6 p-2 text-white/50 hover:text-white transition-colors"
+            className="absolute top-6 right-6 p-2 text-black/50 hover:text-black transition-colors"
           >
             <X size={32} />
           </button>
           <div className="flex flex-col gap-8 pb-20">
             {navLinks.map((link: any) => (
-              <div key={link.tr} className="border-b border-white/5 pb-6">
+              <div key={link.tr} className="border-b border-black/5 pb-6">
                 {link.type === 'dropdown' ? (
                   <div className="space-y-6">
                     <button
                       onClick={() => setIsHovered(isHovered === link.key ? null : link.key!)}
-                      className="flex items-center justify-between w-full hover:text-gold transition-colors uppercase text-2xl font-light tracking-tight text-white/90"
+                      className="flex items-center justify-between w-full hover:text-gold transition-colors uppercase text-2xl font-light tracking-tight text-black/90"
                     >
                       {currentLang === 'tr' ? link.tr : link.en}
                       <ChevronDown size={20} className={`transition-transform duration-300 ${isHovered === link.key ? 'rotate-180 text-gold' : ''}`} />
@@ -220,7 +220,7 @@ export default function Navbar() {
                             key={item.href}
                             href={`/${currentLang}${item.href}`}
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className="text-lg text-white/40 hover:text-gold italic font-light"
+                            className="text-lg text-black/60 hover:text-gold italic font-light"
                           >
                             {currentLang === 'tr' ? item.tr : item.en}
                           </Link>
@@ -233,7 +233,7 @@ export default function Navbar() {
                     href={link.isExternal ? (link.href || '#') : `/${currentLang}${link.href || ''}`}
                     {...(link.isExternal ? { target: "_blank" } : {})}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block text-2xl font-light tracking-tight text-white/90 hover:text-gold transition-colors uppercase"
+                    className="block text-2xl font-light tracking-tight text-black/90 hover:text-gold transition-colors uppercase"
                   >
                     {currentLang === 'tr' ? link.tr : link.en}
                   </Link>
@@ -242,8 +242,8 @@ export default function Navbar() {
             ))}
 
             <div className="flex gap-8 text-sm font-bold tracking-[0.3em] pt-8 opacity-50 uppercase">
-              <Link href={getAlternatePath('tr')} onClick={() => setIsMobileMenuOpen(false)} className={currentLang === 'tr' ? 'text-gold' : 'text-white'}>Türkçe</Link>
-              <Link href={getAlternatePath('en')} onClick={() => setIsMobileMenuOpen(false)} className={currentLang === 'en' ? 'text-gold' : 'text-white'}>English</Link>
+              <Link href={getAlternatePath('tr')} onClick={() => setIsMobileMenuOpen(false)} className={currentLang === 'tr' ? 'text-gold' : 'text-black'}>Türkçe</Link>
+              <Link href={getAlternatePath('en')} onClick={() => setIsMobileMenuOpen(false)} className={currentLang === 'en' ? 'text-gold' : 'text-black'}>English</Link>
             </div>
           </div>
         </div>

@@ -33,7 +33,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
     const { lang, slug } = await params;
     const project = await client.fetch(PROJECT_DETAIL_QUERY, { slug });
 
-    if (!project) return <div className="pt-40 text-center text-white bg-[#0a0a0b] h-screen">Proje Bulunamadı. / Project Not Found.</div>;
+    if (!project) return <div className="pt-40 text-center text-black bg-[#f8f8f8] h-screen">Proje Bulunamadı. / Project Not Found.</div>;
 
     const content = lang === 'tr' ? project.content_tr : (project.content_en || project.content_tr);
 
@@ -52,18 +52,18 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
         : (lang === 'tr' ? 'Devam Eden Projeler' : 'Ongoing Projects');
 
     return (
-        <main className="bg-[#0a0a0b] min-h-screen text-slate-300">
+        <main className="bg-[#f8f8f8] min-h-screen text-slate-600">
             {/* Hero Section */}
-            <div className="relative h-[70vh] min-h-[500px] w-full bg-[#0a0a0b] overflow-hidden flex items-end pb-20">
+            <div className="relative h-[70vh] min-h-[500px] w-full bg-[#fcfcfc] overflow-hidden flex items-end pb-20 border-b border-black/5">
                 <div className="absolute inset-0 z-0">
                     <Image
                         src={project.mainImage || "http://www.ceyyatirim.com/sites/other/ceyyatirim/uploads/slides/projeler-banner.jpg"}
                         alt={title}
                         fill
-                        className="object-cover opacity-50 scale-105 transition-transform duration-[20s] ease-linear hover:scale-110 object-center"
+                        className="object-cover opacity-10 scale-105 transition-transform duration-[20s] ease-linear hover:scale-110 object-center"
                         priority
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/40 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#f8f8f8] via-[#f8f8f8]/80 to-transparent"></div>
                 </div>
                 
                 <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
@@ -72,7 +72,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                             <span className="text-gold font-bold tracking-[0.3em] text-[10px] uppercase">
                                 {categoryTitle}
                             </span>
-                            <h1 className="text-5xl md:text-7xl font-light text-white tracking-tighter italic">
+                            <h1 className="text-5xl md:text-7xl font-light text-black tracking-tighter italic">
                                 {title}
                             </h1>
                         </div>
@@ -86,7 +86,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                     <div className="mb-16">
                         <Link
                             href={`/${lang}/projeler/${project.category === 'completed' ? 'tamamlanan-projeler' : 'devam-eden-projeler'}`}
-                            className="inline-flex items-center text-white/50 hover:text-gold transition-colors text-xs tracking-[0.2em] uppercase font-bold"
+                            className="inline-flex items-center text-black/50 hover:text-gold transition-colors text-xs tracking-[0.2em] uppercase font-bold"
                         >
                             <ChevronLeft size={16} className="mr-2" />
                             {lang === 'tr' ? 'Listeye Dön' : 'Back to List'}
@@ -104,7 +104,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                             {/* Detailed Content */}
                             {content && (
                                 <ScrollReveal>
-                                    <div className="prose prose-invert max-w-none prose-headings:font-light prose-headings:text-white prose-p:text-slate-400 prose-p:leading-relaxed prose-a:text-gold prose-img:rounded-md">
+                                    <div className="prose prose-lg max-w-none prose-headings:font-light prose-headings:text-black prose-p:text-slate-600 prose-p:leading-relaxed prose-a:text-gold prose-img:rounded-md">
                                         <RichTextRenderer content={content} />
                                     </div>
                                 </ScrollReveal>

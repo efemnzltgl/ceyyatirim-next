@@ -71,20 +71,20 @@ export default async function SectorsPage({ params }: { params: Promise<{ lang: 
     return (
         <main className="bg-white min-h-screen">
             {/* Hero Section */}
-            <div className="relative h-[40vh] min-h-[350px] w-full bg-[#0a0a0b] overflow-hidden flex items-center pt-20">
+            <div className="relative h-[40vh] min-h-[350px] w-full bg-[#f8f8f8] overflow-hidden flex items-center pt-20">
                 <Image
                     src="http://www.ceyyatirim.com/sites/other/ceyyatirim/uploads/slides/projeler-banner.jpg"
                     alt={t.title}
                     fill
-                    className="object-cover opacity-50 grayscale"
+                    className="object-cover opacity-10 grayscale"
                     priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#f8f8f8] via-transparent to-transparent"></div>
                 <div className="max-w-7xl mx-auto px-6 w-full text-center relative z-10">
                     <span className="text-gold font-bold tracking-[0.4em] text-[10px] uppercase mb-4 block">
                         {t.subtitle}
                     </span>
-                    <h1 className="text-5xl md:text-7xl font-light text-white tracking-tighter leading-none italic">
+                    <h1 className="text-5xl md:text-7xl font-light text-black tracking-tighter leading-none italic">
                         {t.title}
                     </h1>
                 </div>
@@ -105,7 +105,7 @@ export default async function SectorsPage({ params }: { params: Promise<{ lang: 
                                 <Link
                                     key={sector._id}
                                     href={`/${lang}/sektorler/${sector.slug?.current || '#'}`}
-                                    className="group relative h-[450px] overflow-hidden bg-dark border border-white/5"
+                                    className="group relative h-[450px] overflow-hidden bg-[#fcfcfc] border border-black/5 rounded-sm"
                                 >
                                     <Image
                                         src={sector.iconUrl}
@@ -113,9 +113,9 @@ export default async function SectorsPage({ params }: { params: Promise<{ lang: 
                                         fill
                                         className="object-cover opacity-60 group-hover:scale-110 transition-transform duration-1000 grayscale group-hover:grayscale-0"
                                     />
-                                    <div className="absolute inset-x-0 bottom-0 p-12 bg-gradient-to-t from-dark to-transparent">
-                                        <h3 className="text-3xl font-light text-white mb-4 italic uppercase tracking-wider">{title}</h3>
-                                        <p className="text-white/60 text-sm font-light mb-8 max-w-sm tracking-wide leading-relaxed line-clamp-2">
+                                    <div className="absolute inset-x-0 bottom-0 p-12 bg-gradient-to-t from-white via-white/80 to-transparent">
+                                        <h3 className="text-3xl font-light text-black mb-4 italic uppercase tracking-wider">{title}</h3>
+                                        <p className="text-black/70 text-sm font-light mb-8 max-w-sm tracking-wide leading-relaxed line-clamp-2">
                                             {desc}
                                         </p>
                                         <div className="flex items-center gap-3">

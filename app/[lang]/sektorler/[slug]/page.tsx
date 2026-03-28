@@ -81,7 +81,7 @@ export default async function SectorDetailPage({ params }: { params: Promise<{ l
     const fallbackData = SECTOR_FALLBACK_CONTENT[slug];
 
     if (!sanitySector && !fallbackData) {
-        return <div className="pt-40 text-center font-light tracking-widest opacity-30">SEKTÖR BULUNAMADI</div>;
+        return <div className="pt-40 text-center font-light tracking-widest text-[#1a1c1e] opacity-50">SEKTÖR BULUNAMADI</div>;
     }
 
     const sector = sanitySector || fallbackData;
@@ -91,23 +91,23 @@ export default async function SectorDetailPage({ params }: { params: Promise<{ l
     return (
         <main className="bg-white min-h-screen">
             {/* Hero Section */}
-            <div className="relative h-[50vh] min-h-[450px] w-full bg-[#0a0a0b] overflow-hidden">
+            <div className="relative h-[50vh] min-h-[450px] w-full bg-[#f8f8f8] overflow-hidden">
                 {sector.imageUrl && (
                     <Image
                         src={sector.imageUrl}
                         alt={title}
                         fill
-                        className="object-cover opacity-50 grayscale"
+                        className="object-cover opacity-10 grayscale"
                         priority
                     />
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#f8f8f8] via-transparent to-transparent"></div>
                 <div className="absolute bottom-0 left-0 w-full p-12 md:p-24">
                     <div className="max-w-7xl mx-auto">
                         <span className="text-gold font-bold tracking-[0.4em] text-[10px] uppercase mb-6 block">
                             {lang === 'tr' ? 'SEKTÖR ODAĞIMIZ' : 'SECTOR FOCUS'}
                         </span>
-                        <h1 className="text-5xl md:text-8xl font-light text-white tracking-tighter leading-none italic uppercase">
+                        <h1 className="text-5xl md:text-8xl font-light text-black tracking-tighter leading-none italic uppercase">
                             {title}
                         </h1>
                     </div>

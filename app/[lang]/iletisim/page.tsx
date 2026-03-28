@@ -89,12 +89,12 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
     return (
         <main className="bg-white min-h-screen">
             {/* Hero Section */}
-            <div className="relative h-[40vh] min-h-[350px] w-full bg-[#0a0a0b] overflow-hidden flex items-center pt-20">
+            <div className="relative h-[40vh] min-h-[350px] w-full bg-[#f8f8f8] overflow-hidden flex items-center pt-20">
                 <Image
                     src="http://www.ceyyatirim.com/sites/other/ceyyatirim/uploads/slides/projeler-banner.jpg"
                     alt={t.title}
                     fill
-                    className="object-cover opacity-50 grayscale"
+                    className="object-cover opacity-10 grayscale"
                     priority
                 />
                 <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
@@ -102,7 +102,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
                     <span className="text-gold font-bold tracking-[0.4em] text-[10px] uppercase mb-4 block">
                         {t.subtitle}
                     </span>
-                    <h1 className="text-5xl md:text-7xl font-light text-white tracking-tighter leading-none italic uppercase">
+                    <h1 className="text-5xl md:text-7xl font-light text-black tracking-tighter leading-none italic uppercase">
                         {t.title}
                     </h1>
                 </div>
@@ -119,21 +119,21 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
                             const address = lang === 'tr' ? office.address_tr : (office.address_en || office.address_tr);
 
                             return (
-                                <div key={office._id} className="p-12 bg-white hover:bg-[#0a0a0b] group transition-all duration-700 flex flex-col shadow-sm hover:shadow-2xl hover:-translate-y-2 border border-slate-200/50">
-                                    <h3 className="text-xl font-light text-[#1a1c1e] group-hover:text-white mb-8 tracking-tight uppercase italic border-b border-slate-100 group-hover:border-gold/30 pb-4 transition-all">
+                                <div key={office._id} className="p-12 bg-white hover:bg-[#fcfcfc] group transition-all duration-700 flex flex-col shadow-sm hover:shadow-2xl hover:-translate-y-2 border border-slate-200/50">
+                                    <h3 className="text-xl font-light text-[#1a1c1e] group-hover:text-gold mb-8 tracking-tight uppercase italic border-b border-slate-100 group-hover:border-gold/30 pb-4 transition-all">
                                         {city}
                                     </h3>
                                     <div className="space-y-6 flex-grow">
                                         <div className="flex items-start gap-4">
                                             <MapPin className="w-4 h-4 text-gold mt-1 flex-shrink-0" />
-                                            <p className="text-slate-500 group-hover:text-slate-400 font-light text-sm leading-relaxed transition-colors">
+                                            <p className="text-slate-500 group-hover:text-black/70 font-light text-sm leading-relaxed transition-colors">
                                                 {address}
                                             </p>
                                         </div>
                                         {office.phone && (
                                             <div className="flex items-center gap-4">
                                                 <Phone className="w-4 h-4 text-gold flex-shrink-0" />
-                                                <a href={`tel:${office.phone.replace(/\s+/g, '')}`} className="text-slate-500 group-hover:text-white font-light text-sm hover:text-gold transition-colors">
+                                                <a href={`tel:${office.phone.replace(/\s+/g, '')}`} className="text-slate-500 group-hover:text-black/70 font-light text-sm hover:text-gold transition-colors">
                                                     {office.phone}
                                                 </a>
                                             </div>
@@ -141,7 +141,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
                                         {office.fax && (
                                             <div className="flex items-center gap-4">
                                                 <Printer className="w-4 h-4 text-gold flex-shrink-0" />
-                                                <p className="text-slate-500 group-hover:text-slate-400 font-light text-sm italic transition-colors">
+                                                <p className="text-slate-500 group-hover:text-black/70 font-light text-sm italic transition-colors">
                                                     {office.fax}
                                                 </p>
                                             </div>
@@ -149,7 +149,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
                                         {office.email && (
                                             <div className="flex items-center gap-4">
                                                 <Mail className="w-4 h-4 text-gold flex-shrink-0" />
-                                                <a href={`mailto:${office.email}`} className="text-slate-500 group-hover:text-white font-light text-sm hover:text-gold transition-colors">
+                                                <a href={`mailto:${office.email}`} className="text-slate-500 group-hover:text-black/70 font-light text-sm hover:text-gold transition-colors">
                                                     {office.email}
                                                 </a>
                                             </div>
@@ -161,7 +161,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
                         })}
                     </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start bg-[#0a0a0b] p-12 md:p-24 border border-white/5 relative overflow-hidden group/form shadow-2xl">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start bg-white p-12 md:p-24 border border-black/5 relative overflow-hidden group/form shadow-2xl">
                         {/* Decor - Premium Glow */}
                         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gold/5 -translate-y-1/2 translate-x-1/2 rounded-full blur-[120px]"></div>
                         <div className="absolute bottom-0 left-0 w-64 h-64 bg-gold/10 translate-y-1/2 -translate-x-1/2 rounded-full blur-[80px]"></div>
@@ -170,24 +170,24 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
                             <span className="text-gold font-bold tracking-[0.4em] text-[10px] uppercase mb-8 block reveal-text">
                                 {t.formTitle}
                             </span>
-                            <h2 className="text-4xl md:text-7xl font-light text-white mb-10 tracking-tighter italic uppercase leading-tight">
+                            <h2 className="text-4xl md:text-7xl font-light text-black mb-10 tracking-tighter italic uppercase leading-tight">
                                 {t.formTitle}
                             </h2>
-                            <p className="text-white/50 font-light leading-relaxed mb-16 max-w-md italic border-l border-gold/40 pl-8">
+                            <p className="text-black/60 font-light leading-relaxed mb-16 max-w-md italic border-l border-gold/40 pl-8">
                                 {t.formSubtitle}
                             </p>
 
                             <div className="mt-24 space-y-6">
                                 <div>
                                     <p className="text-[10px] font-bold tracking-[0.3em] text-gold uppercase mb-2">Resmi Bilgi Hattı</p>
-                                    <p className="text-3xl font-light text-white tracking-tighter italic">+90 312 443 33 33</p>
+                                    <p className="text-3xl font-light text-black tracking-tighter italic">+90 312 443 33 33</p>
                                 </div>
                                 <div className="w-12 h-[1px] bg-gold group-hover/form:w-24 transition-all duration-700"></div>
                             </div>
                         </div>
 
                         <div className="relative z-10">
-                            <ContactForm lang={lang} isDark={true} />
+                            <ContactForm lang={lang} isDark={false} />
                         </div>
                     </div>
                 </div>

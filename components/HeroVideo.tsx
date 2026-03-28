@@ -20,9 +20,9 @@ export default function HeroVideo({ lang = 'tr' }: { lang?: string }) {
   }[lang] || { title: "GELECEĞİ", title2: "GÜVENLE İNŞA EDİYORUZ", subtitle: "", button: "KEŞFEDİN" };
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-[#0a0a0b] flex items-center justify-center">
+    <section className="relative h-screen w-full overflow-hidden bg-white flex items-center justify-center">
       {/* Background Video / Image (Ken Burns Effect) */}
-      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden bg-[#0a0a0b]">
+      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden bg-white">
          {/* Lüks Mimari / İnşaat Görseli ile Sinematik Kayma */}
          <div 
             className="w-full h-full bg-cover bg-center opacity-30"
@@ -36,8 +36,8 @@ export default function HeroVideo({ lang = 'tr' }: { lang?: string }) {
             <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" type="video/mp4" />
          </video>
          
-         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black/90"></div>
-         <div className="absolute inset-0 bg-[#0a0a0b]/40"></div>
+         <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/20 to-white/90"></div>
+         <div className="absolute inset-0 bg-white/40"></div>
          
          <style dangerouslySetInnerHTML={{ __html: `
            @keyframes kenBurns {
@@ -51,7 +51,7 @@ export default function HeroVideo({ lang = 'tr' }: { lang?: string }) {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 flex flex-col items-center text-center mt-20">
         <div className="overflow-hidden mb-4">
            <motion.h1 
-             className="text-6xl md:text-[8rem] font-black text-white leading-none tracking-tighter uppercase"
+             className="text-6xl md:text-[8rem] font-black text-black leading-none tracking-tighter uppercase"
              initial={{ y: "100%", opacity: 0 }}
              animate={{ y: 0, opacity: 1 }}
              transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
@@ -61,7 +61,7 @@ export default function HeroVideo({ lang = 'tr' }: { lang?: string }) {
         </div>
         <div className="overflow-hidden mb-8">
            <motion.h1 
-             className="text-4xl md:text-7xl font-light text-white leading-none tracking-tight uppercase italic"
+             className="text-4xl md:text-7xl font-light text-black leading-none tracking-tight uppercase italic"
              initial={{ y: "100%", opacity: 0 }}
              animate={{ y: 0, opacity: 1 }}
              transition={{ duration: 1, ease: [0.76, 0, 0.24, 1], delay: 0.1 }}
@@ -73,7 +73,7 @@ export default function HeroVideo({ lang = 'tr' }: { lang?: string }) {
         </div>
         
         <motion.p 
-          className="text-lg md:text-2xl text-white/70 max-w-2xl font-light mb-16"
+          className="text-lg md:text-2xl text-black/70 max-w-2xl font-light mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.6 }}
@@ -103,7 +103,7 @@ export default function HeroVideo({ lang = 'tr' }: { lang?: string }) {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
       >
-        <div className="text-[10px] text-white/50 tracking-[0.3em] font-bold uppercase rotate-90 mb-6">Scroll</div>
+        <div className="text-[10px] text-black/50 tracking-[0.3em] font-bold uppercase rotate-90 mb-6">Scroll</div>
         <motion.div 
            className="w-[1px] h-16 bg-gradient-to-b from-transparent via-[#dfc18c] to-transparent"
            animate={{ y: [0, 20, 0], opacity: [0.2, 1, 0.2] }}

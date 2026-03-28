@@ -41,33 +41,33 @@ export default async function Footer({ lang }: { lang: string }) {
   };
 
   return (
-    <footer className="bg-[#0a0a0b] text-slate-400 pt-16 pb-10 border-t border-white/5">
+    <footer className="bg-white text-black/80 pt-16 pb-10 border-t border-black/5">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-8 mb-16">
 
         {/* Column 1: Identity */}
         <div className="space-y-6">
           <div className="flex items-center gap-1">
-            <span className="text-white font-light tracking-[0.4em] text-xl">CEY</span>
+            <span className="text-black font-light tracking-[0.4em] text-xl">CEY</span>
             <span className="text-gold font-bold text-xl uppercase tracking-tighter">YATIRIM</span>
           </div>
-          <p className="text-[10px] leading-relaxed text-slate-500 tracking-[0.1em] font-light uppercase italic max-w-xs">
+          <p className="text-[10px] leading-relaxed text-black/70 tracking-[0.1em] font-light uppercase italic max-w-xs">
             {settings?.footerText?.[currentLang] || (currentLang === 'tr'
               ? "Güçlü sermaye yapısı ve vizyoner projelerle geleceğe değer katıyoruz."
               : "We add value to the future with strong capital structure and visionary projects.")}
           </p>
           <div className="flex gap-5 pt-2">
             {settings?.socials?.linkedin && (
-              <a href={settings.socials.linkedin} target="_blank" className="text-white/20 hover:text-gold transition-colors">
+              <a href={settings.socials.linkedin} target="_blank" className="text-black/60 hover:text-gold transition-colors">
                 <Linkedin size={16} strokeWidth={1.5} />
               </a>
             )}
             {settings?.socials?.instagram && (
-              <a href={settings.socials.instagram} target="_blank" className="text-white/20 hover:text-gold transition-colors">
+              <a href={settings.socials.instagram} target="_blank" className="text-black/60 hover:text-gold transition-colors">
                 <Instagram size={16} strokeWidth={1.5} />
               </a>
             )}
             {settings?.socials?.facebook && (
-              <a href={settings.socials.facebook} target="_blank" className="text-white/20 hover:text-gold transition-colors">
+              <a href={settings.socials.facebook} target="_blank" className="text-black/60 hover:text-gold transition-colors">
                 <Facebook size={16} strokeWidth={1.5} />
               </a>
             )}
@@ -77,7 +77,7 @@ export default async function Footer({ lang }: { lang: string }) {
         {/* Column 2: Quick Links (Grouped) */}
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-4">
-            <h4 className="text-white text-[9px] font-black tracking-[0.3em] uppercase opacity-40">
+            <h4 className="text-black text-[9px] font-black tracking-[0.3em] uppercase opacity-40">
               {currentLang === 'tr' ? 'KURUMSAL' : 'CORPORATE'}
             </h4>
             <ul className="text-[9px] space-y-3 tracking-[0.2em] font-bold uppercase">
@@ -96,7 +96,7 @@ export default async function Footer({ lang }: { lang: string }) {
             </ul>
           </div>
           <div className="space-y-4">
-            <h4 className="text-white text-[9px] font-black tracking-[0.3em] uppercase opacity-40">
+            <h4 className="text-black text-[9px] font-black tracking-[0.3em] uppercase opacity-40">
               {currentLang === 'tr' ? 'FAALİYETLER' : 'ACTIVITIES'}
             </h4>
             <ul className="text-[9px] space-y-3 tracking-[0.2em] font-bold uppercase">
@@ -123,25 +123,25 @@ export default async function Footer({ lang }: { lang: string }) {
 
         {/* Column 3: Contact */}
         <div className="space-y-6">
-          <h4 className="text-white text-[9px] font-black tracking-[0.3em] uppercase opacity-40">
+          <h4 className="text-black text-[9px] font-black tracking-[0.3em] uppercase opacity-40">
             {currentLang === 'tr' ? 'İLETİŞİM' : 'CONTACT'}
           </h4>
           <div className="space-y-4">
             <div className="flex gap-3">
               <MapPin size={14} className="text-gold flex-shrink-0 mt-0.5" />
-              <p className="text-[9px] tracking-[0.1em] font-light leading-relaxed uppercase text-slate-500">
+              <p className="text-[9px] tracking-[0.1em] font-light leading-relaxed uppercase text-black/70">
                 {settings?.address?.[currentLang] || "Ankara / TÜRKİYE"}
               </p>
             </div>
             <div className="flex gap-3 items-center">
               <Mail size={14} className="text-gold flex-shrink-0" />
-              <a href={`mailto:${settings?.email || 'info@ceyyatirim.com'}`} className="text-[9px] tracking-[0.2em] font-bold hover:text-white transition-colors">
+              <a href={`mailto:${settings?.email || 'info@ceyyatirim.com'}`} className="text-[9px] tracking-[0.2em] font-bold text-black/70 hover:text-black transition-colors">
                 {settings?.email || 'INFO@CEYYATIRIM.COM'}
               </a>
             </div>
             <div className="flex gap-3 items-center">
               <Phone size={14} className="text-gold flex-shrink-0" />
-              <a href={`tel:${settings?.phone?.replace(/\s+/g, '')}`} className="text-[9px] tracking-[0.2em] font-bold hover:text-white transition-colors">
+              <a href={`tel:${settings?.phone?.replace(/\s+/g, '')}`} className="text-[9px] tracking-[0.2em] font-bold text-black/70 hover:text-black transition-colors">
                 {settings?.phone || '+90 312 443 33 33'}
               </a>
             </div>
@@ -150,8 +150,8 @@ export default async function Footer({ lang }: { lang: string }) {
       </div>
 
       {/* Bottom Copyright */}
-      <div className="max-w-7xl mx-auto px-6 border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
-        <div className="text-[8px] tracking-[0.3em] uppercase font-light text-slate-600">
+      <div className="max-w-7xl mx-auto px-6 border-t border-black/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="text-[8px] tracking-[0.3em] uppercase font-light text-black/70">
           © {new Date().getFullYear()} CEY YATIRIM HOLDİNG. ALL RIGHTS RESERVED.
         </div>
 
@@ -163,7 +163,7 @@ export default async function Footer({ lang }: { lang: string }) {
 
           <div className="h-[1px] w-8 bg-gold/30"></div>
 
-          <span className="text-[8px] tracking-[0.3em] uppercase font-bold text-slate-500">
+          <span className="text-[8px] tracking-[0.3em] uppercase font-bold text-black/60">
             {currentLang === 'tr' ? 'BİR CEYLAN GRUP A.Ş. KURULUŞUDUR' : 'A CEYLAN GROUP INC. COMPANY'}
           </span>
         </div>
