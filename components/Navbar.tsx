@@ -92,7 +92,7 @@ export default function Navbar() {
           {!scrolled && (
             <div className="hidden border-b border-black/5 md:block">
               <div className="max-w-7xl mx-auto px-6 h-10 flex justify-between items-center text-[9px] tracking-[0.3em] font-bold text-black/50 uppercase">
-                <div className="flex gap-6 italic">
+                <div className="flex gap-6">
                   {menuItems.grupSirketleri.map((company) => (
                     <Link
                       key={company.href}
@@ -208,7 +208,7 @@ export default function Navbar() {
                   <div className="space-y-6">
                     <button
                       onClick={() => setIsHovered(isHovered === link.key ? null : link.key!)}
-                      className="flex items-center justify-between w-full hover:text-gold transition-colors uppercase text-2xl font-light tracking-tight text-black/90"
+                      className="flex items-center justify-between w-full hover:text-gold transition-colors uppercase text-2xl font-semibold tracking-tight text-black/90"
                     >
                       {currentLang === 'tr' ? link.tr : link.en}
                       <ChevronDown size={20} className={`transition-transform duration-300 ${isHovered === link.key ? 'rotate-180 text-gold' : ''}`} />
@@ -220,7 +220,7 @@ export default function Navbar() {
                             key={item.href}
                             href={`/${currentLang}${item.href}`}
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className="text-lg text-black/60 hover:text-gold italic font-light"
+                            className="text-lg text-black/60 hover:text-gold font-medium"
                           >
                             {currentLang === 'tr' ? item.tr : item.en}
                           </Link>
@@ -233,7 +233,7 @@ export default function Navbar() {
                     href={link.isExternal ? (link.href || '#') : `/${currentLang}${link.href || ''}`}
                     {...(link.isExternal ? { target: "_blank" } : {})}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block text-2xl font-light tracking-tight text-black/90 hover:text-gold transition-colors uppercase"
+                    className="block text-2xl font-semibold tracking-tight text-black/90 hover:text-gold transition-colors uppercase"
                   >
                     {currentLang === 'tr' ? link.tr : link.en}
                   </Link>

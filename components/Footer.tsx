@@ -50,7 +50,7 @@ export default async function Footer({ lang }: { lang: string }) {
             <span className="text-black font-light tracking-[0.4em] text-xl">CEY</span>
             <span className="text-gold font-bold text-xl uppercase tracking-tighter">YATIRIM</span>
           </div>
-          <p className="text-[10px] leading-relaxed text-black/70 tracking-[0.1em] font-light uppercase italic max-w-xs">
+          <p className="text-[10px] leading-relaxed text-black/70 tracking-[0.1em] font-medium uppercase max-w-xs">
             {settings?.footerText?.[currentLang] || (currentLang === 'tr'
               ? "Güçlü sermaye yapısı ve vizyoner projelerle geleceğe değer katıyoruz."
               : "We add value to the future with strong capital structure and visionary projects.")}
@@ -129,7 +129,7 @@ export default async function Footer({ lang }: { lang: string }) {
           <div className="space-y-4">
             <div className="flex gap-3">
               <MapPin size={14} className="text-gold flex-shrink-0 mt-0.5" />
-              <p className="text-[9px] tracking-[0.1em] font-light leading-relaxed uppercase text-black/70">
+              <p className="text-[9px] tracking-[0.1em] font-medium leading-relaxed uppercase text-black/70">
                 {settings?.address?.[currentLang] || "Ankara / TÜRKİYE"}
               </p>
             </div>
@@ -151,13 +151,13 @@ export default async function Footer({ lang }: { lang: string }) {
 
       {/* Bottom Copyright */}
       <div className="max-w-7xl mx-auto px-6 border-t border-black/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
-        <div className="text-[8px] tracking-[0.3em] uppercase font-light text-black/70">
+        <div className="text-[8px] tracking-[0.3em] uppercase font-medium text-black/70">
           © {new Date().getFullYear()} CEY YATIRIM HOLDİNG. ALL RIGHTS RESERVED.
         </div>
 
         <div className="flex items-center gap-6">
           {/* Yeni Slogan ve Grup Vurgusu */}
-          <span className="text-[8px] tracking-[0.4em] uppercase font-black text-gold italic">
+          <span className="text-[8px] tracking-[0.4em] uppercase font-black text-gold">
             {currentLang === 'tr' ? 'GELECEĞİN YATIRIM VİZYONU' : 'INVESTMENT VISION OF THE FUTURE'}
           </span>
 
