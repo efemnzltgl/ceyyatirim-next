@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
 import { createPortal } from 'react-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Keyboard, Autoplay } from 'swiper/modules';
+import { Navigation, Pagination, Keyboard, Autoplay, Thumbs, FreeMode } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -20,6 +20,7 @@ interface ProjectGalleryProps {
 export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
     const [lightboxOpen, setLightboxOpen] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
 
     const openLightbox = (index: number) => {
         setCurrentIndex(index);
@@ -63,7 +64,8 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
     return (
         <div className="relative w-full">
             <Swiper
-                modules={[Navigation, Pagination, Keyboard, Autoplay]}
+                modules={[Navigation, Pagination, Keyboard, Autoplay, Thumbs]}
+                thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
                 spaceBetween={20}
                 slidesPerView={1}
                 keyboard={{ enabled: true }}
@@ -141,7 +143,53 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
                 .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
                   bottom: 12px;
                 }
+                
+                /* Thumbnail styling */
+                .thumbs-swiper .swiper-slide {
+                    opacity: 0.5;
+                    transition: all 0.3s ease;
+                }
+                .thumbs-swiper .swiper-slide-thumb-active {
+                    opacity: 1;
+                }
+                .thumbs-swiper .swiper-slide-thumb-active > div {
+                    border-color: #b39359;
+                }
             `}} />
+
+            {/* Thumbnail Swiper */}
+            {images.length > 1 && (
+                <div className="mt-6 px-1">
+                    <Swiper
+                        onSwiper={setThumbsSwiper}
+                        spaceBetween={16}
+                        slidesPerView={4}
+                        freeMode={true}
+                        watchSlidesProgress={true}
+                        modules={[FreeMode, Navigation, Thumbs]}
+                        className="thumbs-swiper cursor-pointer h-24 md:h-32"
+                        breakpoints={{
+                            640: { slidesPerView: 4 },
+                            768: { slidesPerView: 5 },
+                            1024: { slidesPerView: 6 },
+                            1280: { slidesPerView: 8 },
+                        }}
+                    >
+                        {images.map((img, idx) => (
+                            <SwiperSlide key={`thumb-${idx}`}>
+                                <div className="relative h-full w-full rounded-xl overflow-hidden border-[3px] border-transparent transition-colors">
+                                    <Image
+                                        src={img.url}
+                                        alt={`Thumbnail ${idx + 1}`}
+                                        fill
+                                        className="object-cover"
+                                    />
+                                </div>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </div>
+            )}
 
             {/* FULLSCREEN LIGHTBOX (Portal) */}
             {lightboxOpen && typeof document !== 'undefined' ? createPortal(
