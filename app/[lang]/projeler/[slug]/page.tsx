@@ -194,18 +194,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
     return (
         <main className="bg-[#f8f8f8] min-h-screen text-slate-600">
             {/* Hero Section */}
-            <div className="relative h-[70vh] min-h-[500px] w-full bg-[#fcfcfc] overflow-hidden flex items-end pb-20 border-b border-black/5">
-                <div className="absolute inset-0 z-0">
-                    <Image
-                        src={project.mainImage || "http://www.ceyyatirim.com/sites/other/ceyyatirim/uploads/slides/projeler-banner.jpg"}
-                        alt={title}
-                        fill
-                        className="object-cover opacity-10 scale-105 transition-transform duration-[20s] ease-linear hover:scale-110 object-center"
-                        priority
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#f8f8f8] via-[#f8f8f8]/80 to-transparent"></div>
-                </div>
-                
+            <div className="relative pt-48 pb-24 w-full bg-[#f8f8f8] flex items-end border-b border-black/5">
                 <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
                     <ScrollReveal>
                         <div className="flex flex-col gap-4">

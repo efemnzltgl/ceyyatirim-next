@@ -91,18 +91,8 @@ export default async function SectorDetailPage({ params }: { params: Promise<{ l
     return (
         <main className="bg-white min-h-screen">
             {/* Hero Section */}
-            <div className="relative h-[50vh] min-h-[450px] w-full bg-[#f8f8f8] overflow-hidden">
-                {sector.imageUrl && (
-                    <Image
-                        src={sector.imageUrl}
-                        alt={title}
-                        fill
-                        className="object-cover opacity-10 grayscale"
-                        priority
-                    />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#f8f8f8] via-transparent to-transparent"></div>
-                <div className="absolute bottom-0 left-0 w-full p-12 md:p-24">
+            <div className="relative pt-48 pb-24 w-full bg-[#f8f8f8] flex items-end border-b border-black/5">
+                <div className="w-full px-6 lg:px-12">
                     <div className="max-w-7xl mx-auto">
                         <span className="text-gold font-bold tracking-[0.4em] text-[10px] uppercase mb-6 block">
                             {lang === 'tr' ? 'SEKTÖR ODAĞIMIZ' : 'SECTOR FOCUS'}
