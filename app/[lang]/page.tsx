@@ -246,19 +246,19 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
           <div className="absolute inset-0 bg-gradient-to-t from-[#f8f8f8] via-[#f8f8f8]/50 to-[#f8f8f8] px-6"></div>
         </div>
 
-        <div className="relative z-10 text-center max-w-5xl">
+        <div className="relative z-10 text-center max-w-5xl px-6 md:px-12">
           <span className="text-black/40 font-bold tracking-[0.3em] text-[10px] uppercase mb-6 block">
             {lang === 'tr' ? 'KÜRESEL ETKİ' : 'GLOBAL IMPACT'}
           </span>
-          <h2 className="text-3xl md:text-5xl font-semibold text-black leading-tight tracking-tight mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-semibold text-black leading-snug md:leading-tight tracking-tight mb-12">
             {lang === 'tr'
               ? "“Kıtalar arası kurduğumuz güçlü köprülerle, Türk sermayesini dünya pazarlarında gururla temsil ediyoruz.”"
               : "“We proudly represent Turkish capital in world markets through the strong bridges we build across continents.”"}
           </h2>
-          <div className="flex items-center justify-center gap-12 text-black/40 text-[10px] font-bold tracking-[0.3em] uppercase">
-            <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-gold"></div> MIAMI</div>
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-12 text-black/40 text-[10px] font-bold tracking-[0.3em] uppercase">
+            <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-gold"></div> MİAMİ</div>
             <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-gold"></div> ANKARA</div>
-            <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-gold"></div> ISTANBUL</div>
+            <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-gold"></div> İSTANBUL</div>
             <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-gold"></div> ANTALYA</div>
           </div>
         </div>
