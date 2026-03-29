@@ -96,20 +96,6 @@ export default function HeroVideo({ lang = 'tr' }: { lang?: string }) {
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div 
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 z-10"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-      >
-        <div className="text-[10px] text-black/50 tracking-[0.3em] font-bold uppercase rotate-90 mb-6">Scroll</div>
-        <motion.div 
-           className="w-[1px] h-16 bg-gradient-to-b from-transparent via-[#dfc18c] to-transparent"
-           animate={{ y: [0, 20, 0], opacity: [0.2, 1, 0.2] }}
-           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </motion.div>
     </section>
   );
 }
