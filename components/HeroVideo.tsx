@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Magnetic from './Magnetic';
 
-export default function HeroVideo({ lang = 'tr' }: { lang?: string }) {
+export default function HeroVideo({ lang = 'tr', imageUrl, videoUrl }: { lang?: string, imageUrl?: string, videoUrl?: string }) {
   const content = {
     tr: {
       title: "GELECEĞİ",
@@ -27,13 +27,13 @@ export default function HeroVideo({ lang = 'tr' }: { lang?: string }) {
          <div 
             className="w-full h-full bg-cover bg-center opacity-30"
             style={{ 
-              backgroundImage: 'url("https://images.unsplash.com/photo-1541888081109-1736b461fdb9?q=80&w=3000&auto=format&fit=crop")',
+              backgroundImage: `url("${imageUrl || 'https://images.unsplash.com/photo-1541888081109-1736b461fdb9?q=80&w=3000&auto=format&fit=crop'}")`,
               animation: 'kenBurns 25s infinite alternate ease-in-out'
             }}
          />
          
          <video autoPlay muted loop playsInline className="absolute top-0 left-0 w-full h-full object-cover opacity-50">
-            <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" type="video/mp4" />
+            <source src={videoUrl || "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"} type="video/mp4" />
          </video>
          
          <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/20 to-white/90"></div>

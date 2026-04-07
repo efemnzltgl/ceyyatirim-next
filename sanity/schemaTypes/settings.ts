@@ -1,9 +1,11 @@
 import { defineField, defineType } from 'sanity'
+import { FolderClosed } from 'lucide-react'
 
 export default defineType({
   name: 'settings',
   title: 'Site Ayarları',
   type: 'document',
+  icon: FolderClosed,
   fields: [
     defineField({
       name: 'title',
@@ -75,4 +77,4 @@ export default defineType({
       ]
     })
   ]
-})
+})

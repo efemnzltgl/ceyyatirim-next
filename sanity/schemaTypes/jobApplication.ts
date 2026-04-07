@@ -1,9 +1,11 @@
 import { defineField, defineType } from 'sanity'
+import { FolderClosed } from 'lucide-react'
 
 export default defineType({
     name: 'jobApplication',
     title: 'İş Başvuruları',
     type: 'document',
+    icon: FolderClosed,
     readOnly: true, // Admin panelinden değiştirilmemeli, sadece okunmalı
     fields: [
         defineField({
@@ -56,3 +58,4 @@ export default defineType({
         }
     }
 })
+

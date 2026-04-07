@@ -9,6 +9,7 @@ import socialActivity from './socialActivity'
 import office from './office'
 import humanResources from './humanResources'
 import jobApplication from './jobApplication'
+import contactPage from './contactPage'
 
 export const schema = {
   types: [
@@ -22,5 +23,6 @@ export const schema = {
     office,
     humanResources,
     jobApplication,
+    contactPage,
   ],
 }

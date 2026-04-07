@@ -11,13 +11,9 @@ import ProjectShowcase from '@/components/ProjectShowcase';
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-const HERO_QUERY = `*[_type == "hero"] | order(order asc) {
-  _id, 
-  title_tr, title_en, 
-  subtitle_tr, subtitle_en, 
-  buttonText_tr, buttonText_en,
-  link,
-  "imageUrl": image.asset->url
+const HOME_MEDIA_QUERY = `*[_type == "hero"][0] {
+  "imageUrl": image.asset->url,
+  "videoUrl": video.asset->url
 }`;
 
 const PROJECTS_QUERY = `*[_type == "project"] | order(order asc, _createdAt asc) [0...6] {
@@ -56,8 +52,8 @@ const SECTORS_QUERY = `*[_type == "sector"] | order(order asc) {
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
 
-  const [slides, projects, settings, companies, sectors] = await Promise.all([
-    client.fetch(HERO_QUERY),
+  const [homeMedia, projects, settings, companies, sectors] = await Promise.all([
+    client.fetch(HOME_MEDIA_QUERY),
     client.fetch(PROJECTS_QUERY),
     client.fetch(SETTINGS_QUERY),
     client.fetch(COMPANIES_QUERY),
@@ -177,8 +173,8 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
 
   return (
     <div className="min-h-screen bg-white">
-      {/* 1. SECTION: Hero Slider */}
-      <HeroVideo lang={lang} />
+      {/* 1. SECTION: Hero Background */}
+      <HeroVideo lang={lang} imageUrl={homeMedia?.imageUrl} videoUrl={homeMedia?.videoUrl} />
 
       {/* 2. SECTION: Corporate Intro */}
       <ScrollReveal className="py-32 lg:py-48 px-6">

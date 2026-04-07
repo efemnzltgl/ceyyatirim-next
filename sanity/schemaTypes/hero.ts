@@ -1,68 +1,38 @@
 import { defineField, defineType } from 'sanity'
+import { Image as ImageIcon } from 'lucide-react'
 
 export default defineType({
   name: 'hero',
-  title: 'Ana Sayfa Slider',
+  title: 'Ana Sayfa Arka Plan (Görsel/Video)',
   type: 'document',
+  icon: ImageIcon,
   fields: [
-    // --- TÜRKÇE İÇERİK ---
-    defineField({
-      name: 'title_tr',
-      title: 'Ana Başlık (TR)',
-      type: 'string',
-      description: 'Örn: Geleceğe Değer Katan Yatırımlar',
-    }),
-    defineField({
-      name: 'subtitle_tr',
-      title: 'Alt Açıklama (TR)',
-      type: 'text',
-      description: 'Slider üzerinde görünecek Türkçe kısa açıklama.',
-    }),
-    defineField({
-      name: 'buttonText_tr',
-      title: 'Buton Metni (TR)',
-      type: 'string',
-      initialValue: 'DETAY',
-    }),
-
-    // --- İNGİLİZCE İÇERİK ---
-    defineField({
-      name: 'title_en',
-      title: 'Main Title (EN)',
-      type: 'string',
-      description: 'Example: Investments Adding Value to the Future',
-    }),
-    defineField({
-      name: 'subtitle_en',
-      title: 'Sub Description (EN)',
-      type: 'text',
-      description: 'English short description on the slider.',
-    }),
-    defineField({
-      name: 'buttonText_en',
-      title: 'Button Text (EN)',
-      type: 'string',
-      initialValue: 'DETAILS',
-    }),
-
-    // --- ORTAK ALANLAR ---
     defineField({
       name: 'image',
       title: 'Arka Plan Görseli',
       type: 'image',
       options: { hotspot: true },
+      description: 'Ana sayfa arka planında kullanılacak görsel',
     }),
     defineField({
-      name: 'link',
-      title: 'Buton Linki',
-      type: 'string',
-      description: 'Butona tıklandığında gidilecek sayfa (Örn: /projeler veya /kurumsal)',
-    }),
-    defineField({
-      name: 'order',
-      title: 'Sıralama',
-      type: 'number',
-      description: 'Slider kaçıncı sırada görünecek?',
+      name: 'video',
+      title: 'Arka Plan Videosu (Opsiyonel)',
+      type: 'file',
+      options: { accept: 'video/*' },
+      description: 'Eğer görsel yerine video göstermek isterseniz MP4 formatında bir video yükleyin. Yüklendiğinde görsel yerine bu video oynatılır.',
     }),
   ],
+  preview: {
+    select: {
+      media: 'image',
+    },
+    prepare({ media }) {
+      return {
+        title: 'Ana Sayfa Arka Planı',
+        subtitle: 'Görsel veya Video Medyası',
+        media,
+      }
+    }
+  },
 })
+

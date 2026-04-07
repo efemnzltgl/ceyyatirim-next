@@ -1,9 +1,16 @@
 import { defineField, defineType } from 'sanity'
+import { FolderClosed } from 'lucide-react'
 
 export default defineType({
   name: 'page',
   title: 'Kurumsal Sayfalar',
   type: 'document',
+  icon: FolderClosed,
+  groups: [
+    { name: 'tr', title: 'Türkçe' },
+    { name: 'en', title: 'İngilizce' },
+    { name: 'details', title: 'Detaylar & Medya' },
+  ],
   fields: [
     // --- TÜRKÇE İÇERİK ---
     defineField({
@@ -11,6 +18,7 @@ export default defineType({
       title: 'Başlık (TR)',
       type: 'string',
       validation: (Rule) => Rule.required(),
+      group: 'tr',
     }),
     defineField({
       name: 'content_tr',
@@ -23,6 +31,7 @@ export default defineType({
           options: { hotspot: true }
         }
       ],
+      group: 'tr',
     }),
     defineField({
       name: 'metaDescription_tr',
@@ -30,6 +39,7 @@ export default defineType({
       type: 'text',
       description: 'SEO için sayfa açıklaması',
       rows: 2,
+      group: 'tr',
     }),
 
     // --- İNGİLİZCE İÇERİK ---
@@ -37,6 +47,7 @@ export default defineType({
       name: 'title_en',
       title: 'Başlık (EN)',
       type: 'string',
+      group: 'en',
     }),
     defineField({
       name: 'content_en',
@@ -49,12 +60,14 @@ export default defineType({
           options: { hotspot: true }
         }
       ],
+      group: 'en',
     }),
     defineField({
       name: 'metaDescription_en',
       title: 'Meta Description (EN)',
       type: 'text',
       rows: 2,
+      group: 'en',
     }),
 
     // --- ORTAK ALANLAR ---
@@ -64,6 +77,7 @@ export default defineType({
       type: 'slug',
       options: { source: 'title_tr' },
       validation: (Rule) => Rule.required(),
+      group: 'details',
     }),
     defineField({
       name: 'pageType',
@@ -76,12 +90,14 @@ export default defineType({
           { title: 'Diğer', value: 'other' },
         ],
       },
+      group: 'details',
     }),
     defineField({
       name: 'featuredImage',
       title: 'Kapak Görseli',
       type: 'image',
       options: { hotspot: true },
+      group: 'details',
     }),
     defineField({
       name: 'keywords',
@@ -89,6 +105,7 @@ export default defineType({
       type: 'array',
       of: [{ type: 'string' }],
       description: 'SEO için anahtar kelimeler',
+      group: 'details',
     }),
   ],
   preview: {
@@ -98,4 +115,4 @@ export default defineType({
       media: 'featuredImage',
     },
   },
-})
+})

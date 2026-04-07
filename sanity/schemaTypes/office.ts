@@ -1,9 +1,16 @@
 import { defineField, defineType } from 'sanity'
+import { FolderClosed } from 'lucide-react'
 
 export default defineType({
     name: 'office',
     title: 'Ofis Lokasyonları',
     type: 'document',
+    icon: FolderClosed,
+    groups: [
+        { name: 'tr', title: 'Türkçe' },
+        { name: 'en', title: 'İngilizce' },
+        { name: 'details', title: 'Detaylar & İletişim' },
+    ],
     fields: [
         // --- TÜRKÇE İÇERİK ---
         defineField({
@@ -11,6 +18,7 @@ export default defineType({
             title: 'Şehir (TR)',
             type: 'string',
             validation: (Rule) => Rule.required(),
+            group: 'tr',
         }),
         defineField({
             name: 'address_tr',
@@ -18,6 +26,7 @@ export default defineType({
             type: 'text',
             rows: 3,
             validation: (Rule) => Rule.required(),
+            group: 'tr',
         }),
 
         // --- İNGİLİZCE İÇERİK ---
@@ -25,12 +34,14 @@ export default defineType({
             name: 'city_en',
             title: 'City (EN)',
             type: 'string',
+            group: 'en',
         }),
         defineField({
             name: 'address_en',
             title: 'Address (EN)',
             type: 'text',
             rows: 3,
+            group: 'en',
         }),
 
         // --- İLETİŞİM BİLGİLERİ ---
@@ -39,18 +50,21 @@ export default defineType({
             title: 'Telefon',
             type: 'string',
             description: 'Format: +90 312 443 33 33',
+            group: 'details',
         }),
         defineField({
             name: 'fax',
             title: 'Fax',
             type: 'string',
             description: 'Format: +90 312 443 00 22',
+            group: 'details',
         }),
         defineField({
             name: 'email',
             title: 'Email',
             type: 'string',
             validation: (Rule) => Rule.email(),
+            group: 'details',
         }),
 
         // --- KONUM BİLGİLERİ ---
@@ -71,6 +85,7 @@ export default defineType({
                 },
             ],
             description: 'Google Maps için koordinatlar',
+            group: 'details',
         }),
         defineField({
             name: 'order',
@@ -78,6 +93,7 @@ export default defineType({
             type: 'number',
             description: 'Ofislerin görüntülenme sırası',
             validation: (Rule) => Rule.required().min(0),
+            group: 'details',
         }),
     ],
     preview: {
@@ -87,3 +103,4 @@ export default defineType({
         },
     },
 })
+

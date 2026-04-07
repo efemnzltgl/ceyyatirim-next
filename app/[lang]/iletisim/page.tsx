@@ -13,6 +13,13 @@ const OFFICES_QUERY = `*[_type == "office"] | order(order asc) {
   location
 }`;
 
+const CONTACT_PAGE_QUERY = `*[_type == "contactPage"][0] {
+  title_tr, title_en,
+  description_tr, description_en,
+  "mainImageUrl": mainImage.asset->url,
+  mapIframe
+}`;
+
 const FALLBACK_OFFICES = [
     {
         _id: 'o1',
@@ -67,7 +74,10 @@ const FALLBACK_OFFICES = [
 
 export default async function ContactPage({ params }: { params: Promise<{ lang: string }> }) {
     const { lang } = await params;
-    const sanityOffices = await client.fetch(OFFICES_QUERY);
+    const [sanityOffices, contactPage] = await Promise.all([
+        client.fetch(OFFICES_QUERY),
+        client.fetch(CONTACT_PAGE_QUERY)
+    ]);
 
     const offices = sanityOffices.length > 0 ? sanityOffices : FALLBACK_OFFICES;
     
@@ -108,10 +118,10 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
                         {t.header}
                     </span>
                     <h1 className="text-4xl md:text-5xl font-semibold text-black tracking-tight leading-tight mb-6">
-                        {t.mainTitle}
+                        {lang === 'tr' ? (contactPage?.title_tr || t.mainTitle) : (contactPage?.title_en || t.mainTitle)}
                     </h1>
                     <p className="text-black/60 text-lg font-medium leading-relaxed max-w-2xl mx-auto">
-                        {t.mainDesc}
+                        {lang === 'tr' ? (contactPage?.description_tr || t.mainDesc) : (contactPage?.description_en || t.mainDesc)}
                     </p>
                 </div>
 
@@ -128,7 +138,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
                         {/* Upper Image Layer */}
                         <div className="relative w-full aspect-video md:aspect-[16/10] bg-white rounded-[32px] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.08)] border border-black/[0.03]">
                             <Image
-                                src="http://www.ceyyatirim.com/sites/other/ceyyatirim/uploads/slides/projeler-banner.jpg"
+                                src={contactPage?.mainImageUrl || "http://www.ceyyatirim.com/sites/other/ceyyatirim/uploads/slides/projeler-banner.jpg"}
                                 alt="Cey Yatırım Headquarters"
                                 fill
                                 className="object-cover hover:scale-105 transition-transform duration-1000"
@@ -138,7 +148,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
                         {/* Lower Map Layer */}
                         <div className="relative w-full aspect-video md:aspect-[16/10] bg-white rounded-[32px] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.08)] border border-black/[0.03] grayscale hover:grayscale-0 transition-all duration-700 p-2">
                              <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3061.277885311277!2d32.8530495!3d39.8904664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d34f9a0c79cd6b%3A0xf63a7585a9dfc29e!2zQ2lubmFoIENkLiBObzoxOSwgMDY2OTAgw4dhbmtheWEvQW5rYXJh!5e0!3m2!1str!2str!4v1700000000000!5m2!1str!2str" 
+                                src={contactPage?.mapIframe || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3061.277885311277!2d32.8530495!3d39.8904664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d34f9a0c79cd6b%3A0xf63a7585a9dfc29e!2zQ2lubmFoIENkLiBObzoxOSwgMDY2OTAgw4dhbmtheWEvQW5rYXJh!5e0!3m2!1str!2str!4v1700000000000!5m2!1str!2str"}
                                 className="w-full h-full rounded-[24px] border-none"
                                 allowFullScreen={false} 
                                 loading="lazy" 

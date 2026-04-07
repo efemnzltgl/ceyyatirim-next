@@ -1,9 +1,16 @@
 import { defineField, defineType } from 'sanity'
+import { FolderClosed } from 'lucide-react'
 
 export default defineType({
     name: 'socialActivity',
     title: 'Sosyal Faaliyetler',
     type: 'document',
+    icon: FolderClosed,
+    groups: [
+      { name: 'tr', title: 'Türkçe' },
+      { name: 'en', title: 'İngilizce' },
+      { name: 'details', title: 'Detaylar & Medya' },
+    ],
     fields: [
         // --- TÜRKÇE İÇERİK ---
         defineField({
@@ -11,6 +18,7 @@ export default defineType({
             title: 'Faaliyet Adı (TR)',
             type: 'string',
             validation: (Rule) => Rule.required(),
+            group: 'tr',
         }),
         defineField({
             name: 'description_tr',
@@ -18,6 +26,7 @@ export default defineType({
             type: 'text',
             description: 'Liste sayfasında gösterilecek kısa açıklama',
             rows: 3,
+            group: 'tr',
         }),
         defineField({
             name: 'content_tr',
@@ -30,6 +39,7 @@ export default defineType({
                     options: { hotspot: true }
                 }
             ],
+            group: 'tr',
         }),
 
         // --- İNGİLİZCE İÇERİK ---
@@ -37,12 +47,14 @@ export default defineType({
             name: 'title_en',
             title: 'Activity Name (EN)',
             type: 'string',
+            group: 'en',
         }),
         defineField({
             name: 'description_en',
             title: 'Short Description (EN)',
             type: 'text',
             rows: 3,
+            group: 'en',
         }),
         defineField({
             name: 'content_en',
@@ -55,6 +67,7 @@ export default defineType({
                     options: { hotspot: true }
                 }
             ],
+            group: 'en',
         }),
 
         // --- ORTAK ALANLAR ---
@@ -67,12 +80,14 @@ export default defineType({
                 maxLength: 96,
             },
             validation: (Rule) => Rule.required(),
+            group: 'details',
         }),
         defineField({
             name: 'featuredImage',
             title: 'Ana Görsel',
             type: 'image',
             options: { hotspot: true },
+            group: 'details',
         }),
         defineField({
             name: 'gallery',
@@ -91,6 +106,7 @@ export default defineType({
                     ],
                 },
             ],
+            group: 'details',
         }),
         defineField({
             name: 'externalLinks',
@@ -105,6 +121,7 @@ export default defineType({
                     ],
                 },
             ],
+            group: 'details',
         }),
         defineField({
             name: 'order',
@@ -112,6 +129,7 @@ export default defineType({
             type: 'number',
             description: 'Faaliyetlerin görüntülenme sırası',
             validation: (Rule) => Rule.required().min(0),
+            group: 'details',
         }),
     ],
     preview: {
@@ -122,3 +140,4 @@ export default defineType({
         },
     },
 })
+
